@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Menu</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        bod {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.menu-container {
+    display: flex;
+    gap: 20px;
+}
+
+.menu-button {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 12px;
+}
+
+.menu-button:hover {
+    background-color: #0056b3;
+}
+
+.icon {
+    margin-right: 10px;
+    font-size: 24px;
+}
+
+.menu-button span {
+    display: inline-block;
+}
+
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <a href="index.html" class="menu-button">
+            <span class="icon">&#127968;</span> 
+            <span>Home</span>
+        </a>
+        <a href="profile.html" class="menu-button">
+            <span class="icon">&#128100;</span> 
+            <span>Profile</span>
+        </a>
+    </div>
+</body>
+</html>

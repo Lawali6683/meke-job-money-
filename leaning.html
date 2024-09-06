@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ha">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #1523ff;
+            margin: 0;
+            padding: 0;
+            text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3); 
+            font-weight: bold;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            margin-left: 20px;
+            font-size: 24px;
+        }
+
+        .menu-icon span {
+            display: block;
+            width: 25px;
+            height: 4px;
+            background-color: white;
+            margin: 4px 0;
+        }
+
+        nav {
+            display: none;
+            background-color: #333;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        nav a {
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            display: block;
+            margin: 20px 0;
+        }
+
+        .post-container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .post-container h2 {
+            color: #ff15fc;
+            margin: 0 0 10px 0;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .post-container p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .video-container, .image-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .video-container iframe, .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .post-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: gray;
+            margin-top: 10px;
+        }
+
+        .call-icon {
+            color: #4CAF50;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        /* Tsarin WhatsApp Icon */
+.whatsapp-icon-container {
+    position: fixed;
+    bottom: 20px;    
+    right: 2px;
+    z-index: 1000;
+    width: 30px;
+    height: 30px;
+   Top:300px; background-color: #25D366;
+    border-radius: 50%;
+    border: 5px solid white;
+    padding: 17px;
+    box-shadow: 0px 4px 8px rgba(80, 0, 60, 0.20);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.whatsapp-icon-container:hover {
+    background-color: #128C7E;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-icon-container img {
+    width: 50px;
+    height: 40px;
+    Top:20px;
+}
+
+.whatsapp-text {
+    margin: 0;
+    padding: 0;
+}
+
+.whatsapp-text .admin,
+.whatsapp-text .chat {
+    font-size: 7px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="menu-icon" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <h1>Learning</h1>
+</header>
+
+<nav id="menu">
+    <a href="index.html"><i class="fa fa-home"></i> Home</a>
+    <a href="admin.html"><i class="fa fa-user-shield"></i> Admin</a>
+    <a href="index.html"><i class="fa fa-sign-out-alt"></i> Logout</a>
+</nav>
+
+<div id="content"></div>
+<section>
+    <div class="whatsapp-icon-container">
+    <div class="whatsapp-text">
+        <div class="admin">NG Admin! Chat</div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
+        <div class="chat"></div>
+    </div>
+</div>
+<script>    
+document.querySelector('.whatsapp-icon-container').addEventListener('click', function() {
+    window.open('https://wa.me/08166836059?text=Hello%2C%20I%27m%20a%20new%20customer.%20Meke%20Job%20%26%20Money%2C%20I%20have%20questions', '_blank');
+});
+</script>  
+</section>
+<script src="https://unpkg.com/realm-web@1.4.2/dist/bundle.iife.js"></script>
+<script>
+    function loadPosts() {
+        let posts = JSON.parse(localStorage.getItem('posts')) || [];
+        let contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = '';
+        // Function to send user data from localStorage to MongoDB Realm
+    async function sendDataToMongoDB() {
+        const credentials = Realm.Credentials.anonymous();
+        const user = await app.logIn(credentials);
+        const mongo = user.mongoClient("mongodb-atlas");
+        const collection = mongo.db("myuser").collection("User");
+
+        // Send all localStorage data to MongoDB Realm
+        for (let i = 0; i < localStorage.length; i++) {
+            const userData = JSON.parse(localStorage.getItem(localStorage.key(i)));
+            await collection.insertOne(userData);
+        }
+        
+        console.log("All localStorage data have been sent to MongoDB Realm");
+    }
+           
+    // Set an interval to send data from localStorage to MongoDB Realm every 5 minutes
+    setInterval(() => {
+        if (isLocalStorageAvailable() && !isLocalStorageFull()) {
+            sendDataToMongoDB();
+        }
+    }, 300000); // 300000 milliseconds = 5 minutes
+
+        posts.reverse().forEach(post => { // Reverse the posts array to show the newest post first
+            let postDiv = document.createElement('div');
+            postDiv.classList.add('post-container');
+
+            let title = document.createElement('h2');
+            title.textContent = post.title;
+            postDiv.appendChild(title);
+
+            if (post.video) {
+                let videoContainer = document.createElement('div');
+                videoContainer.classList.add('video-container');
+                videoContainer.innerHTML = `<iframe width="560" height="315" src="${post.video}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                postDiv.appendChild(videoContainer);
+            }
+
+            if (post.image) {
+                let imageContainer = document.createElement('div');
+                imageContainer.classList.add('image-container');
+                let img = document.createElement('img');
+                img.src = post.image;
+                img.style.maxWidth = '100%';
+                postDiv.appendChild(img);
+            }
+
+            let text = document.createElement('p');
+            text.textContent = post.text;
+            postDiv.appendChild(text);
+
+            let postDetails = document.createElement('div');
+            postDetails.classList.add('post-details');
+
+            let dateTime = document.createElement('span');
+            dateTime.textContent = new Date().toLocaleString();
+            postDetails.appendChild(dateTime);
+
+            let callIcon = document.createElement('i');
+            callIcon.classList.add('fas', 'fa-phone', 'call-icon');
+            callIcon.onclick = function() {
+                window.location.href = 'tel:+2348166836059';
+            };
+            postDetails.appendChild(callIcon);
+
+            postDiv.appendChild(postDetails);
+            contentDiv.appendChild(postDiv);
+        });
+    }
+
+    // Toggle menu visibility
+    function toggleMenu() {
+        var menu = document.getElementById("menu");
+        var menuIcon = document.querySelector('.menu-icon');
+        if (menu.style.display === "flex") {
+            menu.style.display = "none";
+            menuIcon.innerHTML = '<span></span><span></span><span></span>';
+        } else {
+            menu.style.display = "flex";
+            menuIcon.innerHTML = '<i class="fa fa-arrow-left"></i>';
+        }
+    }
+
+    // Admin password protection
+    function checkAdminPassword() {
+        var password = prompt("Enter Admin Password:");
+        if (password === "Haruna77") {
+            window.location.href = "admin.html";
+        } else {
+            alert("Incorrect Password!");
+        }
+    }
+
+    document.querySelector('a[href="admin.html"]').addEventListener('click', function (event) {
+        event.preventDefault();
+        checkAdminPassword();
+    });
+
+    // Load posts when the page loads
+    window.onload = loadPosts;
+</script>
+
+</body>
+</html>

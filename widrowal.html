@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin </title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+    Text-align:center;
+    Font-weight:bold;
+    Color:#7aff00;
+    color: green;
+            text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 300px;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.hidden {
+    display: none;
+}
+
+#adminContainer {
+    padding: 20px;
+}
+
+#withdrawalsContainer {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.withdrawal-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.withdrawal-item button {
+    padding: 8px 12px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.withdrawal-item button:hover {
+    background-color: #e60000;
+}
+.menu-container {
+    display: flex;
+    gap: 20px;
+}
+
+.menu-button {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+}
+
+.menu-button:hover {
+    background-color: #0056b3;
+}
+
+.icon {
+    margin-right: 10px;
+    font-size: 24px;
+}
+
+.menu-button span {
+    display: inline-block;
+}
+
+    </style>
+</head>
+<body> 
+    <center>
+    <div class="menu-container">
+        <a href="index.html" class="menu-button">
+            <span class="icon">&#127968;</span> 
+            <span>Home</span>
+        </a>
+        <a href="profile.html" class="menu-button">
+            <span class="icon">&#128100;</span> 
+            <span>Profile</span>
+        </a>
+    </div> 
+    </center>
+    <div id="passwordPrompt" class="modal">
+        <div class="modal-content">
+            <h2>Enter Password</h2>
+            <input type="password" id="adminPassword" placeholder="Enter Admin Password">
+            <button id="submitPassword">Submit</button>
+        </div>
+    </div>
+
+    <div id="adminContainer" class="hidden">
+        <h1>Admin Haruna lawali</h1>
+        <div id="withdrawalsContainer">
+            <h2>Pending Withdrawals</h2>
+            <div id="withdrawalList"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const adminPassword = "66";
+    const passwordPrompt = document.getElementById('passwordPrompt');
+    const adminContainer = document.getElementById('adminContainer');
+    const submitPassword = document.getElementById('submitPassword');
+    const withdrawalList = document.getElementById('withdrawalList');
+
+    submitPassword.addEventListener('click', () => {
+        const inputPassword = document.getElementById('adminPassword').value;
+        if (inputPassword === adminPassword) {
+            passwordPrompt.classList.add('hidden');
+            adminContainer.classList.remove('hidden');
+            loadWithdrawals();
+        } else {
+            alert('Incorrect Password!');
+        }
+    });
+
+    function loadWithdrawals() {
+        const withdrawals = JSON.parse(localStorage.getItem('withdrawals')) || [];
+
+        if (withdrawals.length === 0) {
+            withdrawalList.innerHTML = '<p>No pending withdrawals.</p>';
+        } else {
+            withdrawalList.innerHTML = '';
+            withdrawals.forEach((withdrawal, index) => {
+                const withdrawalItem = document.createElement('div');
+                withdrawalItem.classList.add('withdrawal-item');
+
+                withdrawalItem.innerHTML = `
+                    <div>
+                        <p><strong>Type:</strong> ${withdrawal.type}</p>
+                        <p><strong>Amount:</strong> ${withdrawal.amount} Naira</p>
+                        <p><strong>Date:</strong> ${withdrawal.date}</p>
+                    </div>
+                    <button data-index="${index}">Delete</button>
+                `;
+
+                withdrawalList.appendChild(withdrawalItem);
+            });
+        }
+    }
+
+    withdrawalList.addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON') {
+            const index = e.target.getAttribute('data-index');
+            const confirmation = confirm('Are you sure you have processed this withdrawal?');
+
+            if (confirmation) {
+                deleteWithdrawal(index);
+                alert('Withdrawal marked as complete.');
+                loadWithdrawals();
+            }
+        }
+    });
+
+    function deleteWithdrawal(index) {
+        let withdrawals = JSON.parse(localStorage.getItem('withdrawals')) || [];
+        withdrawals.splice(index, 1);
+        localStorage.setItem('withdrawals', JSON.stringify(withdrawals));
+    }
+});
+    </script>
+</body>
+</html>

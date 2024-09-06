@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ha">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;            
+            background-color: #f9f9f9;
+            color: #1523ff;
+            margin: 0;
+            padding: 0;
+            text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3); 
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #4CAF50;
+            padding: 5px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .admin-form {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 27px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .admin-form h2 {
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        .admin-form label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        .admin-form input[type="text"],
+        .admin-form input[type="file"],
+        .admin-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .admin-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .admin-form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .post-preview {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .post-preview .post-container {
+            position: relative;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .post-preview .post-container h2 {
+            text-align: center;
+            margin: 0 0 10px;
+        }
+
+        .post-preview .post-container p {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .post-preview img {
+            max-width: 100%;
+            margin-top: 10px;
+        }
+
+        .post-preview iframe {
+            width: 100%;
+            height: 315px;
+            margin-top: 10px;
+        }
+
+        .post-preview .delete-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4d4d;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .text-options {
+            margin: 10px 0;
+        }
+
+        .text-options button {
+            padding: 5px 10px;
+            margin: 5px;
+            border: 1px solid #4CAF50;
+            border-radius: 3px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .text-options button:hover {
+            background-color: #f1f1f1;
+        }
+
+        .timestamp {
+            font-size: 12px;
+            color: #888;
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .video-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Admin Dashboard</h1>
+</header>
+
+<nav>
+    <a href="leaning.html"><i class="fa fa-home"></i>Leaning</a>
+    <a href="widrowal.html"><i class="fa fa-user"></i>Widrowal</a>
+</nav>
+
+<div class="admin-form">
+    <h2>Create New Post</h2>
+    <label for="title">Title</label>
+    <input type="text" id="title" placeholder="Enter post title">
+
+    <label for="text">Text</label>
+    <textarea id="text" rows="4" placeholder="Enter post content"></textarea>
+
+    <div class="text-options">
+        <button onclick="formatText('center')">Center</button>
+        <button onclick="formatText('normal')">Normal Text</button>
+    </div>
+
+    <label for="image">Upload Image</label>
+    <input type="file" id="image-upload" accept="image/*">
+
+    <label for="video">YouTube Video URL</label>
+    <input type="text" id="video" placeholder="Enter YouTube video URL (optional)">
+
+    <input type="submit" value="Submit Post" onclick="submitPost()">
+
+    <div class="post-preview" id="post-preview">
+        <!-- Post preview will be displayed here -->
+    </div>
+</div>
+<script src="https://unpkg.com/realm-web@1.4.2/dist/bundle.iife.js"></script>
+<script>
+    function formatText(format) {
+        let textArea = document.getElementById('text');
+        if (format === 'center') {
+            textArea.style.textAlign = 'center';
+        } else if (format === 'normal') {
+            textArea.style.textAlign = 'left';
+        }
+    }
+
+    function submitPost() {
+        let title = document.getElementById('title').value;
+        let text = document.getElementById('text').value;
+        let video = document.getElementById('video').value;
+        let imageFile = document.getElementById('image-upload').files[0];
+        let reader = new FileReader();
+
+        if (!title || !text) {
+            alert('Title and Text are required.');
+            return;
+        }
+
+        if (video) {
+            let videoID = extractYouTubeID(video);
+            let videoURL = `https://www.youtube.com/embed/${videoID}`;
+            checkYouTubeVideo(videoID, function (isValid, error) {
+                if (isValid) {
+                    savePost(title, text, videoURL, imageFile);
+                } else {
+                    alert(error);
+                }
+            });
+        } else {
+            savePost(title, text, null, imageFile);
+        }
+    }
+
+    function savePost(title, text, videoURL, imageFile) {
+        let reader = new FileReader();
+
+        reader.onload = function (e) {
+            let imageURL = e.target.result;
+
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            let timestamp = new Date().toLocaleString();
+            posts.push({ title, text, image: imageURL, video: videoURL, timestamp });
+            localStorage.setItem('posts', JSON.stringify(posts));
+            displayPosts();
+
+            // Clear input fields after submission
+            document.getElementById('title').value = '';
+            document.getElementById('text').value = '';
+            document.getElementById('video').value = '';
+            document.getElementById('image-upload').value = '';
+        };
+
+        if (imageFile) {
+            reader.readAsDataURL(imageFile);
+        } else {
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            let timestamp = new Date().toLocaleString();
+            posts.push({ title, text, video: videoURL, timestamp });
+            localStorage.setItem('posts', JSON.stringify(posts));
+            displayPosts();
+
+            // Clear input fields after submission
+            document.getElementById('title').value = '';
+            document.getElementById('text').value = '';
+            document.getElementById('video').value = '';
+            document.getElementById('image-upload').value = '';
+        }
+    }
+
+    function displayPosts() {
+        let posts = JSON.parse(localStorage.getItem('posts')) || [];
+        let postPreview = document.getElementById('post-preview');
+        postPreview.innerHTML = '';
+
+        posts.forEach((post, index) => {
+            let postDiv = document.createElement('div');
+            postDiv.classList.add('post-container');
+
+            let deleteBtn = document.createElement('button');
+            deleteBtn.classList.add('delete-button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.onclick = function () {
+                if (confirm('Are you sure you want to delete this post?')) {
+                    deletePost(index);
+                }
+            };
+            
+            // Function to send user data from localStorage to MongoDB Realm
+    async function sendDataToMongoDB() {
+        const credentials = Realm.Credentials.anonymous();
+        const user = await app.logIn(credentials);
+        const mongo = user.mongoClient("mongodb-atlas");
+        const collection = mongo.db("myuser").collection("User");
+
+        // Send all localStorage data to MongoDB Realm
+        for (let i = 0; i < localStorage.length; i++) {
+            const userData = JSON.parse(localStorage.getItem(localStorage.key(i)));
+            await collection.insertOne(userData);
+        }
+        
+        console.log("All localStorage data have been sent to MongoDB Realm");
+    }
+           
+    // Set an interval to send data from localStorage to MongoDB Realm every 5 minutes
+    setInterval(() => {
+        if (isLocalStorageAvailable() && !isLocalStorageFull()) {
+            sendDataToMongoDB();
+        }
+    }, 300000); // 300000 milliseconds = 5 minutes
+
+            postDiv.appendChild(deleteBtn);
+
+            let title = document.createElement('h2');
+            title.textContent = post.title;
+            postDiv.appendChild(title);
+
+            if (post.image) {
+                let img = document.createElement('img');
+                img.src = post.image;
+                postDiv.appendChild(img);
+            }
+
+            if (post.video) {
+                let videoContainer = document.createElement('div');
+                videoContainer.classList.add('video-container');
+                let iframe = document.createElement('iframe');
+                                iframe.src = post.video;
+                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                iframe.setAttribute('allowfullscreen', 'true');
+                videoContainer.appendChild(iframe);
+                postDiv.appendChild(videoContainer);
+            }
+
+            let text = document.createElement('p');
+            text.textContent = post.text;
+            postDiv.appendChild(text);
+
+            let timestamp = document.createElement('div');
+            timestamp.classList.add('timestamp');
+            timestamp.textContent = post.timestamp;
+            postDiv.appendChild(timestamp);
+
+            postPreview.appendChild(postDiv);
+        });
+    }
+
+    function deletePost(index) {
+        let posts = JSON.parse(localStorage.getItem('posts')) || [];
+        posts.splice(index, 1);
+        localStorage.setItem('posts', JSON.stringify(posts));
+        displayPosts();
+    }
+
+    function extractYouTubeID(url) {
+        let regex = /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+        let match = url.match(regex);
+        return (match && match[1]) ? match[1] : null;
+    }
+
+    function checkYouTubeVideo(videoID, callback) {
+        let request = new XMLHttpRequest();
+        request.open('GET', `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoID}&format=json`, true);
+        request.onreadystatechange = function () {
+            if (request.readyState === 4) {
+                if (request.status === 200) {
+                    callback(true);
+                } else {
+                    callback(false, 'Invalid YouTube URL or video is not accessible.');
+                }
+            }
+        };
+        request.send();
+    }
+
+    // Display posts on page load
+    window.onload = function() {
+        displayPosts();
+    };
+</script>
+
+</body>
+</html>
+

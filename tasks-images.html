@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ha">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tacks Images</title>
+    <link rel="stylesheet" href="styles.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: green;
+            text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3);
+   
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+        }
+
+        .back-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .dashboard {
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        .dashboard .bank-icon {
+            margin-left: 15px;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .ad-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 140px); /* Full height minus header and footer */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .ad-image {
+            max-width: 100%;
+            max-height: 80%;
+            margin-bottom: 20px;
+        }
+
+        .ad-title {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .ad-title:hover {
+            color: #666;
+        }
+
+        .currency-switch {
+            margin-left: 15px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="back-icon" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i> <!-- Arrow back icon -->
+        </div>
+        <div class="dashboard">
+            <span id="total-balance">Total Balance: ₦0.00</span>
+            <div class="currency-switch" onclick="toggleCurrency()">₦/&#36;</div> <!-- Naira/Dollar Switch -->
+            <div class="bank-icon" onclick="goToBank()">
+                <i class="fas fa-piggy-bank"></i> <!-- Bank Icon -->
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="ad-container">
+            <div id="center-ad" class="ad-center">
+                <img id="ad-image" class="ad-image" src="" alt="Ad Image">
+                <div class="ad-title">Image Ad</div>
+            </div>
+            <!-- Banner Ad a sama -->
+            <div class="ad-banner top-banner">
+                <ins class="adsbygoogle"
+                    style="display:inline-block;width:320px;height:50px"
+                    data-ad-client="ca-app-pub-8072917028976228~3278346246"
+                    data-ad-slot="1857453369"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="ad-banner bottom-banner">
+            <ins class="adsbygoogle"
+                style="display:inline-block;width:320px;height:50px"
+                data-ad-client="ca-app-pub-8072917028976228~3278346246"
+                data-ad-slot="1485449086"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </footer>
+
+    <script>
+        let balance = parseFloat(localStorage.getItem('balance')) || 0;
+        let isDollar = false;
+
+        document.getElementById('total-balance').innerText = `Total Balance: ₦${balance.toFixed(2)}`;
+
+        function updateBalanceDisplay() {
+            const balanceText = isDollar ? `$${(balance / 500).toFixed(2)}` : `₦${balance.toFixed(2)}`;
+            document.getElementById('total-balance').innerText = `Total Balance: ${balanceText}`;
+        }
+
+        function toggleCurrency() {
+            isDollar = !isDollar;
+            updateBalanceDisplay();
+        }
+
+        const adImages = [
+            {
+                appId: "ca-app-pub-8072917028976228~3278346246", // Admob App ID
+        adId: "ca-app-pub-8072917028976228/1857453369", // Admob Ad Unit ID
+        videoSrc: "admob_video.mp4",
+        revenue: 500, // Naira
+    },
+    {
+        appId: "397968812958135", // Unity App ID
+        adId: "397968812958135_397970882957928", // Unity Ad ID
+        videoSrc: "unity_video.mp4",
+        revenue: 1000, // Naira
+    },
+    {
+        appId: "1891065628035079", // IronSource App ID
+        adId: "1891065628035079_1891067468034895", // IronSource Ad ID
+        videoSrc: "ironsource_video.mp4",
+        revenue: 800, // Naira
+    }
+];
+
+        let currentAdIndex = 0;
+
+        function loadAd(adIndex) {
+            const ad = adImages[adIndex];
+            document.getElementById('ad-image').src = ad.imageSrc;
+            setTimeout(() => {
+                addToBalance(ad.revenue);
+                nextAd();
+            }, 120000); // Show ad for 2 minutes (120000ms)
+        }
+
+        function nextAd() {
+            currentAdIndex = (currentAdIndex + 1) % adImages.length;
+            loadAd(currentAdIndex);
+        }
+
+        function addToBalance(amount) {
+            balance += amount * 0.5; // 50% of ad revenue
+            localStorage.setItem('balance', balance);
+            updateBalanceDisplay();
+            checkStorageLimit();
+        }
+
+        function checkStorageLimit() {
+            if (localStorage.length >= 5) {
+                sendDataToMongoDB();
+                localStorage.clear();
+            }
+        }
+
+        function sendDataToMongoDB() {
+            const blassData = {
+                balance: balance,
+                timestamp: new Date().toISOString(),
+            };
+
+            fetch('https://your-mongodb-api.com/save-blass', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(blassData),
+            }).then(response => response.json())
+              .then(data => console.log(data))
+              .catch(error => console.error('Error:', error));
+        }
+
+        window.onload = loadAd(currentAdIndex);
+    </script>
+</body>
+</html>

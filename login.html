@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Login Page</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(45deg, #2193b0, #6dd5ed);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+    color: green;
+            text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+header ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+header ul li a:hover {
+    color: #f39c12;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 400px;
+    width: 80%;
+    color: #333;
+}
+
+.login-container h1 {
+    margin-bottom: 20px;
+    font-size: 26px;
+    color: #333;
+}
+
+.login-container label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.password-container {
+    position: relative;
+}
+
+.password-container .toggle-password {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+}
+
+.btn-login, .btn-reset {
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.btn-login:hover, .btn-reset:hover {
+    background-color: #e67e22;
+}
+
+.forgot-link {
+    display: block;
+    margin-top: 15px;
+    color: #3498db;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.forgot-link:hover {
+    color: #2980b9;
+}
+
+.hidden {
+    display: none;
+}
+
+#message, #resetMessage {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #e74c3c;
+}
+.input{
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <h1 >Welcome to Your Account</h1>
+            <form id="loginForm">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+
+                <label for="password">Password</label>
+                <div class="password-container">
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+                </div>
+
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+
+            <a href="#" id="forgotPassword" class="forgot-link">Forgot Password?</a>
+            <div id="message"></div>
+        </div>
+
+        <div id="resetPasswordContainer" class="hidden">
+            <h2>Reset Password</h2>
+            <form id="resetPasswordForm">
+                <label for="resetEmail"><center>Email Address</center></label>
+  <button>              <input type="email" id="resetEmail" class="btn-reset" style="width: 70%;"placeholder="Enter your email" required></button>
+                <button type="submit" class="btn-reset">Submit</button>
+            </form>
+            <div id="resetMessage"></div>
+        </div>
+    </main>
+<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init('YOUR_EMAILJS_USER_ID'); // Sanya EmailJS user ID naka
+        })();
+    </script>
+
+    <script src="https://unpkg.com/realm-web@1.4.2/dist/bundle.iife.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('loginForm');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const message = document.getElementById('message');
+    const togglePassword = document.getElementById('togglePassword');
+
+    const resetPasswordLink = document.getElementById('forgotPassword');
+    const resetPasswordContainer = document.getElementById('resetPasswordContainer');
+    const resetPasswordForm = document.getElementById('resetPasswordForm');
+    const resetEmailInput = document.getElementById('resetEmail');
+    const resetMessage = document.getElementById('resetMessage');
+            // Binciken user cikin localStorage ko MongoDB Realm
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = emailInput.value.trim();
+                const password = passwordInput.value.trim();
+
+                let storedUser = JSON.parse(localStorage.getItem(email));
+                if (storedUser && storedUser.password === password) {
+                    message.textContent = 'Login successful! Redirecting to your profile...';
+                    setTimeout(() => {
+                        window.location.href = 'profile.html';
+                    }, 2000);
+                } else {
+                    // Idan ba a samu ba a localStorage, bincika cikin MongoDB Realm
+                    try {
+                        const app = new Realm.App({ id: "makejob-lxaatjj" });
+                        const credentials = Realm.Credentials.emailPassword(email, password);
+                        const user = await app.logIn(credentials);
+
+                        if (user) {
+                            message.textContent = 'Login successful! Redirecting to your profile...';
+                            setTimeout(() => {
+                                window.location.href = 'profile.html';
+                            }, 2000);
+                        } else {
+                            message.textContent = 'Invalid email or password.';
+                        }
+                    } catch (error) {
+                        message.textContent = 'Error occurred, please try again.';
+                    }
+                }
+            });
+
+            // Forget Password - Tura sabon password ta hanyar EmailJS
+            resetPasswordLink.addEventListener('click', () => {
+                resetPasswordContainer.classList.remove('hidden');
+            });
+
+            resetPasswordForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const resetEmail = resetEmailInput.value.trim();
+
+                let storedUser = JSON.parse(localStorage.getItem(resetEmail));
+                if (storedUser) {
+                    const newPassword = Math.random().toString(36).slice(-8);
+                    localStorage.setItem(resetEmail, JSON.stringify({ ...storedUser, password: newPassword }));
+                    
+                    emailjs.send('service_yjy02bh', 'template_mw7tydr', {
+                        to_email: resetEmail,
+                        message: `Your new password is: ${newPassword}`
+                    }).then(() => {
+                        resetMessage.textContent = 'A new password has been sent to your email. Please check your inbox Email.';
+                    }).catch((error) => {
+                        resetMessage.textContent = 'Error sending email.';
+                    });
+                } else {
+                    try {
+                        const response = await fetch('YOUR_MONGODB_API_LINK_HERE/reset-password', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ email: resetEmail }),
+                        });
+
+                        const data = await response.json();
+
+                        if (data.success) {
+                            resetMessage.textContent = 'A new password has been sent to your email. Please check your email.';
+                        } else {
+                            resetMessage.textContent = 'This email address is not registered.';
+                        }
+                    } catch (error) {
+                        resetMessage.textContent = 'Error occurred, please try again.';
+                    }
+                }
+
+                setTimeout(() => {
+                    resetPasswordContainer.classList.add('hidden');
+                    resetMessage.textContent = '';
+                }, 5000);
+            });
+
+            // Toggle Password Visibility
+            togglePassword.addEventListener('click', () => {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                togglePassword.classList.toggle('fa-eye-slash');
+            });
+        });
+   
+
+    </script>
+</body>
+</html>
