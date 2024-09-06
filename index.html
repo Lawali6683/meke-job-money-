@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meke Job And Money</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+            text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3);       
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .menu-container {
+            display: none;
+            background-color: white;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 100;
+        }
+
+        .menu-container a {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #f4f4f4;
+            transition: background-color 0.3s;
+        }
+
+        .menu-container a:last-child {
+            border-bottom: none;
+        }
+
+        .menu-container a:hover {
+            background-color: #f4f4f4;
+        }
+
+        .menu-container i {
+            margin-right: 10px;
+        }
+
+        /* Neon Text */
+        .neon-text {
+            font-size: 2em;
+            color: #fff;
+            text-shadow: 0 0 5px #00f, 0 0 10px #00f, 0 0 20px #00f, 0 0 40px #00f, 0 0 80px #00f;
+            background-color: black;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Fancy Text */
+        .fancy-text {
+            font-size: 1.2em;
+            background-color: #f3f3f3;
+            padding: 15px;
+            border-left: 4px solid #ff6f61;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        /* Step Titles */
+        .step-title {
+            font-size: 1.4em;
+            color: #4ca1af;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .highlighted-text {
+            font-size: 1.3em;
+            color: #fff;
+            background-color: #ff6f61;
+            padding: 5px 10px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        /* Quote Section */
+        .quote {
+            font-family: 'Georgia', serif;
+            font-size: 1.4em;
+            color: #555;
+            padding: 10px 20px;
+            border-left: 5px solid #764ba2;
+            background-color: #f9f9f9;
+            font-style: italic;
+            margin-bottom: 30px;
+            text-align: center;
+            Font-weight:bold;
+            Font-size:16px;
+        }
+         
+        /* Button Styles */
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+       margin-top: 20px;
+            text-align: center;
+             
+        }
+
+        .buttons a, .modern-btn {
+            background-color: #1b1b1b;
+            color: #fff;
+            text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00;
+            padding: 10px 20px;
+            font-size: 14px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+       margin-top: 20px;
+                
+            text-align: center;
+        }
+
+        .buttons a:hover, .modern-btn:hover {
+            background-color: #0056b3;
+        }
+        
+        /* Button Styles */
+        .modern-btn {
+            padding: 10px 20px;
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .modern-btn:hover {
+            background-color: #ffa85c;
+        }
+
+        /* Additional Styling */
+        .glow-button {
+            padding: 10px 20px;
+            background-color: #764ba2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(118, 75, 162, 0.5);
+            transition: box-shadow 0.3s ease;
+            display: block;
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        .glow-button:hover {
+            box-shadow: 0 0 40px rgba(118, 75, 162, 0.7);
+        }
+        .outlined-text {
+        font-family: 'Verdana', sans-serif;
+        font-size: 2em;
+        color: transparent;
+        -webkit-text-stroke: 2px #ff6f61;
+        text-align: center;
+    }
+    .container8 {
+            text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #1f1f1f, #262626);
+    box-shadow: 10px 10px 20px #0c0c0c, -10px -10px 20px #343434;
+        }
+
+        .glow-effect h1 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #ffcc00;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.7);
+            animation: glow 1s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 204, 0, 0.7);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 204, 0, 1);
+            }
+        }
+.button, .button3 {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 13px;
+    text-decoration: none;
+    display: inline-block    
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: 0.4s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover, .button3:hover {
+    background-color: #45a049; /* Darker Green */
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.button:active, .button3:active {
+    background-color: #3e8e41;
+    transform: scale(1.2) rotate(-5deg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    transition: 0.2s;
+}
+
+.button, .button3 {
+    position: relative;
+    overflow: hidden;
+}
+
+.button::before, .button3::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.15);
+    transition: all 0.75s;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.button:hover::before, .button3:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}  
+.social-media {
+    margin-top: 20px;
+}
+
+.social-media h3 {
+    color: #004d99;
+    margin-bottom: 15px;
+    Text-align:center;
+}
+
+.social-media a {
+    margin-right: 15px;
+    Text-align:center;
+}
+
+.social-media img {
+padding: 5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    Text-align:center;
+}
+
+.social-media img:hover {
+    transform: scale(1.1);
+}
+.container67 {
+            background-color: #ffffff;
+            padding: 4px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+        }
+     .ty {
+            font-size: 32px;
+            color: #e74c3c;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+       .tr{
+            font-size: 18px;
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+        .highlight {
+            color: #2980b9;
+            font-weight: bold;
+        }
+        /* Tsarin WhatsApp Icon */
+.whatsapp-icon-container {
+    position: fixed;
+    bottom: 20px;    
+    right: 2px;
+    z-index: 1000;
+    width: 50px;
+    height: 55px;
+   Top:300px; background-color: #25D366;
+    border-radius: 50%;
+    border: 5px solid white;
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(80, 0, 60, 0.20);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.whatsapp-icon-container:hover {
+    background-color: #128C7E;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-icon-container img {
+    width: 50px;
+    height: 50px;
+    Top:20px;
+}
+
+.whatsapp-text {
+    margin: 0;
+    padding: 0;
+}
+
+.whatsapp-text .admin,
+.whatsapp-text .chat {
+    font-size: 1.4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.px;
+}   
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Learning & Opportunities</h1>
+    <span class="menu-icon"><i class="fas fa-bars"></i></span>
+    <div class="menu-container" id="menuContainer">
+        <a href="register.html"><i class="fas fa-user-plus"></i> Register</a>
+        <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="contact.html"><i class="fas fa-phone-alt"></i> Contact Us</a>
+        <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+        <a href="English.html"><i class="fas fa-phone-alt"></i> Help center</a>
+    </div>
+</header>
+
+<div class="container">
+    <h2 class="neon-text">Welcome to Meke Job & Money!</h2><p> </p>
+    
+    <div class="fancy-text">
+        Your gateway to effortless earnings.
+        Are you searching for reliable ways to make money online? Look no further! At:
+🔴  🔵   ⚪   ⚫      
+    </div>
+    <h3 class="outlined-text">Bonus ₦500 $0.50, Referal ₦500 $0.50, Widrowal ₦500 $0.50,</h3>
+ <div class="buttons"> 
+     <a href="register.html" class="btn"><i class="fas fa-user-plus"></i> Register</a>
+  <a href="login.html" class="btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+   </div>
+    
+<p><div class="container67">
+        <h1 class="ty">Meke Job & Money - Maximize Your Income</h1>
+        <p class="tr"><span class="highlight">Service Fee:</span> Only ₦2000</p>
+        <p><span class="highlight">Welcome Bonus:</span> Get ₦500 Free</p>
+        <p><span class="highlight">Daily Earnings:</span> Earn ₦3000 Every Day</p>
+        <p><span class="highlight">Free Learning:</span> Unlimited Opportunities</p>
+        <p><span class="highlight">Referral Bonus:</span> ₦500 per Friend</p>
+        <p><span class="highlight">Minimum Withdrawal:</span> ₦500</p></div></p>
+        <p>Everything you need is here with <span class="highlight">Meke Job & Money!</span></p>
+    <h3 class="step-title">🤳Meke Job & Money🤳</h3>
+    <p class="highlighted-text">How! To join us now.</p>
+    <p>
+       <i style="font-size:16px;">We provide top-notch training that empowers you to sell products online, secure contracts, and land real jobs all from the comfort of your home.</i></p>
+
+    <h3 class="step-title">What’s in it for you</h3>
+    <p class="highlighted-text">Effortless Earnings.</p>
+    <p>Learn from industry experts and start making money quickly and easily.</p>
+
+    <h3 class="step-title">Affordable Access.</h3>
+    <p class="highlighted-text">Build Your social media to promote affiliate products.</p>
+    <p>For just ₦2000, you’ll unlock powerful skills that will set you up for success in the booming online market.</p>
+
+    <h3 class="step-title">Instant Rewards.</h3>
+    <p class="highlighted-text">Your Opportunities
+.</p>
+    <p>Get a ₦500 Welcome Bonus, immediately upon registration and start completing tasks and earning money within the app anytime, anywhere. earning affiliate commissions over $3 ₦3000, in one day. Minimum withdrawal start at ₦500 or $0.50</p>
+
+<div class="container8">
+        <div class="glow-effect">
+            <h1>Stars view video or images and get money Now</h1>
+        </div> 
+            <button class="button3" onclick="window.location.href='register.html'">Register & earn $🔁₦</button> 
+           <button class="button3" onclick="window.location.href='login.html'">Login & earn $🔁₦</button>  </center>       </section>   
+    </div>
+
+    <h3 class="step-title">Exclusive Benefits</h3>
+    <p class="highlighted-text">Referral Bonus.</p>
+    <p>Boost your earnings by ₦500 $0.50 for every new user who registers through your referral link—no limits!</p>
+
+    <h3 class="step-title">Quick Cash outs.</h3>
+    <p class="highlighted-text">Simple Esay</p>
+    <p>With a minimum withdrawal of just ₦500 $0.50, you can access your funds daily, either through Opay or directly to your bank account.</p>
+
+    <h3 class="step-title">Why You wait?</h3>
+    <p class="highlighted-text">Seize this golden opportunity and start earning from the comfort of your home today.</p>
+    <p>Join the online marketplace now and take the first step towards your financial freedom!.</p>
+
+    <h3 class="step-title">Optimize and Scale.</h3>
+    <p class="highlighted-text">Analyze your data and refine your approach for better results.</p>
+    <p>As you grow, consider expanding your reach by promoting more products or exploring new niches.</p>
+
+    <h3 class="step-title">Stay Updated.</h3>
+    <p class="highlighted-text">Keep up with industry trends and continue earning.</p>
+    <p>Staying informed will help you remain competitive in the affiliate marketing space.</p>
+
+    <blockquote class="quote">"Invite your friends and earn ₦500. Minimum withdrawal amount: ₦500." - Start today!</blockquote>
+   <button class="modern-btn"onclick="window.location.href='register.html'">Join Now</button>
+        <button class="glow-button"onclick="window.location. href='register.html'">"Learn More</button>
+    </div>    
+    <section>
+        <section>
+            <div class="whatsapp-icon-container">
+    <div class="whatsapp-text">
+        <div class="admin">NG Admin! Chat</div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
+        <div class="chat"></div>
+    </div>
+</div>
+<script>    
+document.querySelector('.whatsapp-icon-container').addEventListener('click', function() {
+    window.open('https://wa.me/08166836059?text=Hello%2C%20I%27m%20a%20new%20customer.%20Meke%20Job%20%26%20Money%2C%20I%20have%20questions', '_blank');
+});
+</script>
+        </section>
+        <footer>
+        <div class="social-media">
+                <h3>Follow Us:</h3>
+                <a href="https://www.facebook.com/Haruna lawali" target="_blank">
+                    <img src="facebook.png" alt="Facebook">
+                </a>
+                <a href="https://wa.me/08166836059?text=Hello%2C%20I'm%20a%20new%20customer" target="_blank">
+                    <img src="what.png" alt="WhatsApp">
+                </a>
+                <a href="tel:+2348166836059">
+                    <img src="call.png" alt="Call Us">
+                </a>
+                <a href="mailto:lawaliharuna943@gmail.com.">
+                    <img src="gmail.png" alt="Send Email">
+                </a>
+            </div>
+        </div>
+    </section>
+    </footer>
+    
+<script>
+    const menuIcon = document.querySelector('.menu-icon');
+    const menuContainer = document.getElementById('menuContainer');
+
+            menuIcon.addEventListener('click', () => {
+            if (menuContainer.style.display === 'block') {
+                menuContainer.style.display = 'none';
+            } else {
+                menuContainer.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
