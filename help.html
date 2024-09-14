@@ -10,61 +10,74 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f4f8;
+            background-color: #f9fbfc;
             color: #333;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         header {
             background-color: #4CAF50;
             color: white;
-            padding: 15px 0;
+            padding: 20px 0;
             text-align: center;
-            font-size: 24px;
-            font-weight: 600;
+            font-size: 28px;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .container {
-            width: 85%;
-            max-width: 1100px;
-            margin: 20px auto;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            border-radius: 8px;
+            width: 80%;
+            max-width: 1200px;
+            margin: 30px auto;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
         }
 
         h2 {
             color: #4CAF50;
-            font-size: 22px;
-            margin-bottom: 10px;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 600;
         }
 
         p {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 18px;
         }
 
         ul {
-            list-style-type: square;
+            list-style-type: disc;
             margin-left: 20px;
         }
 
         ul li {
             margin-bottom: 10px;
+            font-size: 17px;
         }
 
         .important {
             background-color: #fff9c4;
-            padding: 10px;
-            border-left: 4px solid #FFEB3B;
-            margin: 20px 0;
+            padding: 20px;
+            border-left: 5px solid #FFEB3B;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .important h2 {
+            font-size: 22px;
+            color: #333;
         }
 
         .footer {
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 10px 0;
+            padding: 20px 0;
             position: relative;
             bottom: 0;
             width: 100%;
@@ -72,68 +85,87 @@
 
         .footer p {
             margin: 0;
+            font-size: 16px;
         }
 
         a {
             color: #4CAF50;
             text-decoration: none;
+            font-weight: 600;
         }
 
         a:hover {
             text-decoration: underline;
         }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
 
-    <header>Cibiyar Taimako </header>
+    <header>
+        Cibiyar Taimako
+    </header>
 
     <div class="container">
-        <h2>Yadda Ake Biyan Kudi</h2>
-        <p>Biyan kudi na Service Fee  a wannan tsarin yana da matakai masu sauki da tsaro. Don biyan Naira 2000:</p>
+        <h2>Yadda Za a Biya (Kudin Aiki)</h2>
+        <p>Domin samun damar shiga dandalinmu, kuna buƙatar biyan kuɗi na Naira 2000 sau ɗaya. Ga yadda za ku biya:</p>
         <ul>
-            <li>Saka sunan da za ka yi amfani da shi wajen tura kudin, tare da lambar asusun ka (account number).</li>
-            <li>Danna <strong>Submit</strong>.</li>
-            <li>Za a bayyana maka lambar asusun NG Admin (bank account) wanda zaka tura kudin.</li>
-            <li>Bayan ka yi transfer, ka koma shafin <strong>Register</strong>.</li>
-            <li>Na’urarmu za ta tabbatar da biyan kudinka ta atomatik, kuma za ta bude maka wata button inda zaka saka OTP code din da aka turo maka ta email. Daga nan, ka danna.
-            Idan kun samu wata matsala wajan biyan kudi ko kurewar lokaci ku tuntubi NG Admin domin Diba bayanen ku Kuma ya mayar maku da kudin ku <strong>Submit</strong>.</li>
+            <li>Danna maballin da ke ƙasa, cika sunanka da adireshin imel ɗinka, sannan ka aika fom ɗin.</li>
+            <li>Tsarinmu zai haifar da asusun ɗan lokaci wanda za ku iya biyan kuɗi.</li>
+            <li>Canza kuɗin zuwa asusun da aka ba ku.</li>
+            <li>Bayan biyan kuɗi, za ku sami imel da ke ɗauke da lamba mai lamba shida. Kwafi lambar kuma shigar da ita a shafin tabbaci.</li>
         </ul>
+        <a href="#" class="btn">Aika Biyan Kuɗi</a>
 
         <div class="important">
-            <h2>Muhimman Abubuwa da Za Ka Lura Da Su:</h2>
+            <h2>Mahimman Abubuwan da Za a Lura:</h2>
             <ul>
-                <li>Ka tabbata ka saka ingantaccen <strong>email address</strong> da kake amfani da shi.</li>
-                <li>Ka tabbata sunan bankin ka da kuma <strong>account number</strong> sun kasance daidai.</li>
-                <li>Na’urarmu za ta ajiye bayananka na tsawon minti 30. Idan ba a samu tabbacin biyan kudin ba cikin wannan lokaci, za a goge bayananka don tsaro.</li>
+                <li>Bayan shigar da lambar, tsarin zai ba ku damar kammala rajistarku.</li>
+                <li>Kuna iya shiga dashboard ɗinku nan take bayan rajista kuma fara samun kuɗi a yau.</li>
+                <li>Idan kun fuskanci matsaloli yayin biyan kuɗi, da fatan za a tuntuɓi NG Admin.</li>
             </ul>
         </div>
 
-        <h2>Yadda Ake Yin Register</h2>
-        <p>Bayan biyan kudi, za a baka damar yin <strong>Register</strong>:</p>
+        <h2>Yadda Za a Yi Rajista</h2>
+        <p>Bayan biyan kuɗi, bi waɗannan matakan don kammala rajistarku:</p>
         <ul>
-            <li>Cika bayananka daidai.</li>
-            <li>Saka <strong>password</strong> wanda za ka iya tunawa.</li>
-            <li>Tabbatar da bayanan ka sannan ka danna <strong>Submit</strong>.</li>
-            <li>Za ka samu dashboard wanda zai nuna sunan ka, tare da <strong>welcome bonus</strong> na Naira 500.</li>
+            <li>Cika fom ɗin rajista da cikakkun bayanan da suka dace.</li>
+            <li>Kirkiri kalmar sirri mai ƙarfi da za ku iya tuna da ita.</li>
+            <li>Aika fom ɗin, kuma asusunku zai kasance a bude.</li>
+            <li>Bayan nasarar rajista, za ku sami ladan maraba na Naira 500, wanda za ku iya cirewa nan take.</li>
         </ul>
 
-        <h2>Yadda Ake Cire Kudi (Withdrawal)</h2>
-        <p>Za ka iya cire kudin ka idan sun kai Naira 500 ta OPay ko kuma Naira 1000 ta hanyar bank transfer:</p>
+        <h2>Yadda Za a Cire Kuɗi</h2>
+        <p>Da zarar kuɗin ku ya kai N500 don OPay ko N1000 don canja wurin banki, za ku iya cire kuɗin da kuka samu:</p>
         <ul>
-            <li>Ka tabbatar ka saka bayanan bankin ka daidai. Idan kun samu matsala kun yi widdirowal ba a biya ku ba Bayan awa 24,ku tabbatar kun tuntubi NG Admin</li>
-            <li>Bayan cire kudin ka, biyan zai kasance a matsayin <strong>pending</strong> har sai Admin ya tabbatar da biyan.</li>
-            <li>Za ka samu tabbaci daga dashboard cewa an cire kudin, kuma za ka gan su a cikin asusun ka.</li>
+            <li>Tabbatar da cewa cikakkun bayanan bankinku sun dace don tabbatar da canja wurin lafiya.</li>
+            <li>Za a sarrafa cire kuɗi cikin awanni 24 kuma za a nuna matsayin a matsayin "Pending" har sai an tabbatar da shi.</li>
+            <li>Idan kuɗin bai kai ba bayan lokaci, tuntubi NG Admin don taimako.</li>
         </ul>
 
         <h2>Menene Make Job & Money?</h2>
-        <p>Wannan web app na <strong>Make Job & Money</strong> hadin gwiwa ne tsakanin kungiyoyi da kamfanoni masu zaman kansu don bayar da sabis da kuma damar samun kudi ta hanyar yin aiki daga nesa. Kamfanonin suna da shekaru 13 suna hada kai da matasa masu fasaha da dalibai domin inganta kasuwanci da habaka ilimin su a fannin fasaha.</p>
+        <p><strong>Make Job & Money</strong> dandali ne na yanar gizo da aka kirkira tare da haɗin gwiwar kamfanoni na duniya don samar da ingantattun damar samun kuɗin halal na yanar gizo da kuma tayin ayyukan nesa. An yi shi musamman don matasa da ɗalibai da ke neman hanyoyin samun kuɗi ta hanyar halal a yanar gizo.</p>
 
-        <p><strong>Domin Karin Bayani:</strong> Tuntubi NG Admin don karin bayani ko tambayoyi.</p>
+        <p><strong>Don Ƙarin Bayani:</strong> Tuntuɓi NG Admin don kowanne tambaya ko goyon baya dangane da biyan kuɗi ko rajista.</p>
     </div>
 
     <div class="footer">
-        <p>&copy; 2024 NG Admin - All Rights Reserved</p>
+        <p>&copy; 2024 NG Admin - Duk Haƙƙin Mallaka na Wucewa</p>
     </div>
 
 </body>
