@@ -10,61 +10,74 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f4f8;
+            background-color: #f9fbfc;
             color: #333;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         header {
             background-color: #4CAF50;
             color: white;
-            padding: 15px 0;
+            padding: 20px 0;
             text-align: center;
-            font-size: 24px;
-            font-weight: 600;
+            font-size: 28px;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .container {
-            width: 85%;
+            width: 80%;
             max-width: 1200px;
-            margin: 20px auto;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            border-radius: 8px;
+            margin: 30px auto;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
         }
 
         h2 {
             color: #4CAF50;
-            font-size: 22px;
-            margin-bottom: 10px;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 600;
         }
 
         p {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 18px;
         }
 
         ul {
-            list-style-type: square;
+            list-style-type: disc;
             margin-left: 20px;
         }
 
         ul li {
             margin-bottom: 10px;
+            font-size: 17px;
         }
 
         .important {
             background-color: #fff9c4;
-            padding: 10px;
-            border-left: 4px solid #FFEB3B;
-            margin: 20px 0;
+            padding: 20px;
+            border-left: 5px solid #FFEB3B;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .important h2 {
+            font-size: 22px;
+            color: #333;
         }
 
         .footer {
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 10px 0;
+            padding: 20px 0;
             position: relative;
             bottom: 0;
             width: 100%;
@@ -72,65 +85,84 @@
 
         .footer p {
             margin: 0;
+            font-size: 16px;
         }
 
         a {
             color: #4CAF50;
             text-decoration: none;
+            font-weight: 600;
         }
 
         a:hover {
             text-decoration: underline;
         }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
 
-    <header><p>Help Center</p>
-    <a href="help.html"><i class="fas fa-help-alt" style="color:black;"> Hausa Language</a>
+    <header>
+        Help Center
+           <a href="help.html" style="color:black;"> Hausa Language</a>
     </header>
- 
+
     <div class="container">
-        <h2>How to Make a Payment</h2>
-        <p>Making a payment in this system is simple and secure. To pay Naira 2000:</p>
+        <h2>How to Make a Payment (Service Fee)</h2>
+        <p>To access our platform, a one-time service fee of N2000 is required. Here's how to make the payment:</p>
         <ul>
-            <li>Enter the name you will use to transfer the money along with your account number.</li>
-            <li>Click <strong>Submit</strong>.</li>
-            <li>You will be shown the NG Admin's bank account number to which you will transfer the money.</li>
-            <li>After making the transfer, go back to the <strong>Register</strong> page.</li>
-            <li>Our system will automatically verify your payment, and you will be prompted to enter the OTP code sent to your email. After that, click, if you get some  problem to payment contact NG Admin <strong>Submit</strong>.</li>
+            <li>Click the button below, fill in your name and email address, then submit the form.</li>
+            <li>Our system will generate a temporary account number for you to make the payment.</li>
+            <li>Transfer the payment to the provided account number.</li>
+            <li>After payment, you’ll receive an email with a 6-digit code. Copy the code and enter it on the verification page.</li>
         </ul>
+        <a href="#" class="btn">Submit Payment</a>
 
         <div class="important">
             <h2>Important Things to Note:</h2>
             <ul>
-                <li>Make sure you provide a valid <strong>email address</strong> that you actively use.</li>
-                <li>Ensure that your bank name and <strong>account number</strong> are correct.</li>
-                <li>Our system will store your details for 30 minutes. If the payment is not confirmed within this time, your details will be deleted for security purposes.</li>
+                <li>After entering the 6-digit code, the system will guide you to complete your registration.</li>
+                <li>You can access your dashboard immediately after registration and start earning today.</li>
+                <li>If you encounter any issues during the payment process, feel free to contact NG Admin.</li>
             </ul>
         </div>
 
         <h2>How to Register</h2>
-        <p>After making the payment, you will be able to <strong>Register</strong>:</p>
+        <p>After making the payment, follow these steps to complete your registration:</p>
         <ul>
-            <li>Fill in your details correctly.</li>
-            <li>Set a <strong>password</strong> that you can remember.</li>
-            <li>Verify your details and then click <strong>Submit</strong>.</li>
-            <li>You will access a dashboard that shows your name along with a <strong>welcome bonus</strong> of Naira 500.</li>
+            <li>Fill out the registration form with accurate details.</li>
+            <li>Create a secure password that you can easily remember.</li>
+            <li>Submit the form, and your account will be activated.</li>
+            <li>Upon successful registration, you'll receive a welcome bonus of Naira 500, which you can withdraw immediately.</li>
         </ul>
 
         <h2>How to Withdraw Money</h2>
-        <p>You can withdraw your money if it reaches Naira 500 via OPay or Naira 1000 via bank transfer:</p>
+        <p>Once your balance reaches N500 for OPay or N1000 for bank transfers, you can withdraw your earnings:</p>
         <ul>
-            <li>Make sure you enter your bank details correctly.</li>
-            <li>After initiating the withdrawal, the payment status will be <strong>pending</strong> until Admin confirms the payment.</li>
-            <li>You will receive confirmation from your dashboard that the money has been withdrawn, and you will see it in your account. If you are not see your payment after 24 hours contact NG Admin</li>
+            <li>Ensure your bank details are correct for seamless transactions.</li>
+            <li>Withdrawals will be processed within 24 hours and marked as "Pending" until confirmed.</li>
+            <li>If the transaction takes longer than expected, contact NG Admin for assistance.</li>
         </ul>
 
         <h2>What is Make Job & Money?</h2>
-        <p>The <strong>Make Job & Money</strong> web app is a collaboration between organizations and private companies to offer services and create opportunities for earning money remotely. These companies have been working with skilled youths and students for over 13 years, promoting business growth and enhancing their technical skills.</p>
+        <p><strong>Make Job & Money</strong> is an online platform built in partnership with global companies to provide genuine online income opportunities and remote job offers. It's designed especially for youths and students who are looking for legitimate ways to earn money online.</p>
 
-        <p><strong>For More Information:</strong> Contact NG Admin for further inquiries or questions.</p>
+        <p><strong>For More Information:</strong> Contact NG Admin for any inquiries or support regarding the payment or registration process.</p>
     </div>
 
     <div class="footer">
