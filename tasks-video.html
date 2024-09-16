@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
     <style>
-        /* Basic Reset */
+       /* Basic Reset */
         * {
             margin: 0;
             padding: 0;
@@ -17,10 +17,8 @@
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
-            overflow: hidden; 
             color: green;
             text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3);
-   
         }
 
         header {
@@ -30,11 +28,6 @@
             background-color: #333;
             color: #fff;
             padding: 10px 20px;
-        }
-
-        .back-icon {
-            font-size: 24px;
-            cursor: pointer;
         }
 
         .dashboard {
@@ -54,11 +47,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: calc(100vh - 60px); /* Full height minus header */
+            height: calc(100vh - 60px); 
             background-color: #000;
         }
 
-        .ad-video {
+        .ad-video, .ad-image {
             width: 100%;
             height: 100%;
             max-width: 500px;
@@ -69,7 +62,7 @@
             justify-content: center;
         }
 
-        .ad-video video {
+        .ad-video video, .ad-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -88,26 +81,21 @@
             display: none;
         }
 
-        .ad-video:hover .ad-title {
+        .ad-video:hover .ad-title, .ad-image:hover .ad-title {
             display: block;
-        }
-
-        .next-ad-btn {
-            position: absolute;
-            top: 60px;
-            right: 10px;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            padding: 5px 10px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
         }
 
         .currency-switch {
             margin-left: 15px;
             cursor: pointer;
             font-size: 18px;
+        }
+
+        .no-ad-message {
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+            color: #333;
         }
 
         footer {
@@ -124,147 +112,167 @@
 </head>
 <body>
     <header>
-        <div class="back-icon" onclick="goBack()">
-            <i class="fas fa-arrow-left"></i> <!-- Arrow back icon -->
-        </div>
         <div class="dashboard">
             <span id="total-balance">Total Balance: ₦0.00</span>
-            <div class="currency-switch" onclick="toggleCurrency()">₦/&#36;</div> <!-- Naira/Dollar Switch -->
+            <div class="currency-switch" onclick="toggleCurrency()">₦/&#36;</div> 
             <div class="bank-icon" onclick="goToBank()">
-                <i class="fas fa-piggy-bank"></i> <!-- Bank Icon -->
+                <i class="fas fa-piggy-bank"></i> 
             </div>
         </div>
     </header>
 
     <main>
         <div id="video-container">
-            <!-- Ads will be dynamically added here -->
-        </div>
-        <button class="next-ad-btn" onclick="nextAd()">Next Ad</button>
+            
+        </div>        
     </main>
 
     <footer>
         <p>&copy; 2024 Your Website. All rights reserved.</p>
     </footer>
 
-    <script>
-        const adVideos = [
-    {
-        appId: "ca-app-pub-8072917028976228~3278346246", // Admob App ID
-        adId: "ca-app-pub-8072917028976228/1485449086", // Admob Ad Unit ID
-        videoSrc: "admob_video.mp4",
-        revenue: 500, // Naira
-    },
-    {
-        appId: "397968812958135", // Unity App ID
-        adId: "397968812958135_397970882957928", // Unity Ad ID
-        videoSrc: "unity_video.mp4",
-        revenue: 1000, // Naira
-    },
-    {
-        appId: "1891065628035079", // IronSource App ID
-        adId: "1891065628035079_1891067468034895", // IronSource Ad ID
-        videoSrc: "ironsource_video.mp4",
-        revenue: 800, // Naira
-    }
-];
-        let currentAdIndex = 0;
-        let isDollar = false;
+<script src="https://cdn.ironsrc.com/mobile-sdk/7.1.0/ironsource-sdk.min.js"></script>
+<script src="https://sdk.start.io/latest/startio-sdk.min.js"></script>    
+<script>
+    // Samun ad configurations don ad apps ɗinka
+    const adApps = [
+        {
+            appId: "208455831",                  
+            revenueView: 20, 
+            revenueClick: 50,
+            type: 'video', // Nau'in ad din (image ko video)
+            videoUrl: 'https://example.com/video-ad.mp4' // Samun URL na bidiyo
+        },
+        {
+            appId: "1f8ca330d",                 
+            revenueView: 20, 
+            revenueClick: 50,
+            type: 'image', // Wannan yana image ad
+            imageUrl: 'https://example.com/image-ad.jpg' // Samun URL na hoto
+        }, 
+        {
+            appId: "ca-app-pub-8072917028976228~1240333663", // Admob App id 
+            adUnitBanner: "ca-app-pub-8072917028976228/4380135342", 
+            adUnitInterstitial: "ca-app-pub-8072917028976228/3733838905", 
+            adUnitRewardedInterstitial: "ca-app-pub-8072917028976228/2984660170",  
+            adUnitAppOpen: "ca-app-pub-8072917028976228/3304224375", 
+            revenueView: 20, 
+            revenueClick: 50,
+            type: 'video', // Wannan yana video ad
+            videoUrl: 'https://example.com/video-ad2.mp4'
+        },
+    ];
 
-        function loadAd(adIndex) {
-            const videoContainer = document.getElementById('video-container');
-            videoContainer.innerHTML = '';
+    let currentAdIndex = 0;
+    let isDollar = false;
+    let userBalance = 0;
 
-            const ad = adVideos[adIndex];
-            const adDiv = document.createElement('div');
-            adDiv.className = 'ad-video';
-            adDiv.innerHTML = `
-                <video src="${ad.videoSrc}" autoplay muted></video>
-                <div class="ad-title">Video Ad</div>
-            `;
+    // Samun balance na farko daga local storage idan akwai
+    window.onload = () => {
+        userBalance = parseFloat(localStorage.getItem('balance')) || 0;
+        updateBalanceDisplay();
 
-            videoContainer.appendChild(adDiv);
-
-            const videoElement = adDiv.querySelector('video');
-            videoElement.addEventListener('ended', () => {
-                addToBalance(ad.revenue);
-                nextAd();
-            });
-
-            updateBalanceDisplay();
-        }
-
-        function nextAd() {
-            currentAdIndex = (currentAdIndex + 1) % adVideos.length;
+        if (navigator.onLine) {
             loadAd(currentAdIndex);
+        } else {
+            handleNetworkError();
         }
+    };
 
-        function addToBalance(amount) {
-            let balance = localStorage.getItem('balance') || 0;
-            balance = parseFloat(balance) + (amount * 0.5); // 50% of ad revenue
-            localStorage.setItem('balance', balance);
-            updateBalanceDisplay();
-        }
+    function loadAd(adIndex) {
+        const videoContainer = document.getElementById('video-container');
+        videoContainer.innerHTML = ''; // Tsaftace tsohuwar ad
 
-        function updateBalanceDisplay() {
-            let balance = localStorage.getItem('balance') || 0;
-            balance = parseFloat(balance);
-            const balanceDisplay = document.getElementById('total-balance');
-            if (isDollar) {
-                balanceDisplay.innerText = `Total Balance: $${(balance / 750).toFixed(2)}`;
-            } else {
-                balanceDisplay.innerText = `Total Balance: ₦${balance.toFixed(2)}`;
+        const ad = adApps[adIndex];
+
+        if (ad) {
+            // Duba ko nau'in ad din video ne ko image
+            if (ad.type === 'video') {
+                const adDiv = document.createElement('div');
+                adDiv.className = 'ad-video';
+                adDiv.innerHTML = `
+                    <video id="adVideo" autoplay muted>
+                        <source src="${ad.videoUrl}" type="video/mp4">
+                    </video>
+                    <div class="ad-title" onclick="clickAd(${ad.revenueClick})">Click Ad: Earn ₦${ad.revenueClick}</div>
+                `;
+                videoContainer.appendChild(adDiv);
+
+                const videoElement = document.getElementById('adVideo');
+                videoElement.addEventListener('ended', () => {
+                    addToBalance(ad.revenueView);
+                    nextAd();
+                });
+            } else if (ad.type === 'image') {
+                const adDiv = document.createElement('div');
+                adDiv.className = 'ad-image';
+                adDiv.innerHTML = `
+                    <img src="${ad.imageUrl}" alt="Image Ad" />
+                    <div class="ad-title" onclick="clickAd(${ad.revenueClick})">Click Ad: Earn ₦${ad.revenueClick}</div>
+                `;
+                videoContainer.appendChild(adDiv);
             }
+        } else {
+            videoContainer.innerHTML = `
+                <div class="no-ad-message">
+                    <p>Babu bidiyo ko talla da aka samu a halin yanzu.</p>
+                </div>
+            `;
+            videoContainer.style.background = "#f4f4f4";
         }
+    }
 
-        function toggleCurrency() {
-            isDollar = !isDollar;
-            updateBalanceDisplay();
-        }
-
-        function goToBank() {
-            window.location.href = 'profile.html'; // Redirect to the profile page
-        }
-
-        function goBack() {
-            window.history.back();
-        }
-
-        // Initial load
+    function nextAd() {
+        currentAdIndex = (currentAdIndex + 1) % adApps.length;
         loadAd(currentAdIndex);
-          
-        function addToBalance(amount) {
-            balance += amount * 0.5; // 50% of ad revenue
-            localStorage.setItem('balance', balance);
-            updateBalanceDisplay();
-            checkStorageLimit();
-        }
+    }
 
-        function checkStorageLimit() {
-            if (localStorage.length >= 5) {
-                sendDataToMongoDB();
-                localStorage.clear();
+    function addToBalance(amount) {
+        userBalance += amount;
+        localStorage.setItem('balance', userBalance);
+        updateBalanceDisplay();
+    }
+
+    function clickAd(amount) {
+        userBalance += amount;
+        localStorage.setItem('balance', userBalance);
+        updateBalanceDisplay();
+    }
+
+    function updateBalanceDisplay() {
+        const balanceDisplay = document.getElementById('total-balance');
+        if (isDollar) {
+            balanceDisplay.innerText = `Total Balance: $${(userBalance / 1300).toFixed(2)}`;
+        } else {
+            balanceDisplay.innerText = `Total Balance: ₦${userBalance.toFixed(2)}`;
+        }
+    }
+
+    function toggleCurrency() {
+        isDollar = !isDollar;
+        updateBalanceDisplay();
+    }
+
+    function handleNetworkError() {
+        const videoContainer = document.getElementById('video-container');
+        videoContainer.innerHTML = '<div class="loading">Loading ads, please wait...</div>';
+        
+        setTimeout(() => {
+            if (navigator.onLine) {
+                loadAd(currentAdIndex);
+            } else {
+                handleNetworkError();
             }
-        }
+        }, 5000);
+    }
 
-        function sendDataToMongoDB() {
-            const blassData = {
-                balance: balance,
-                timestamp: new Date().toISOString(),
-            };
+    window.addEventListener('online', () => loadAd(currentAdIndex));
 
-            fetch('https://your-mongodb-api.com/save-blass', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(blassData),
-            }).then(response => response.json())
-              .then(data => console.log(data))
-              .catch(error => console.error('Error:', error));
-        }
+    window.addEventListener('offline', handleNetworkError);
 
-        window.onload = loadAd(currentAdIndex);
-    </script>
+    function goToBank() {
+        alert("Go your dashboard and see your total balance ");
+    }
+</script>
 </body>
 </html>
